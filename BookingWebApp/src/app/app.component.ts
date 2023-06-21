@@ -11,10 +11,10 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  token?: Token | null
+  token?: string | null
 
   constructor(private authService: AuthenticationService) {
-    this.authService.token.subscribe(x => this.token = x)
+    this.token = this.authService.tokenValue
   }
 
   logout() {

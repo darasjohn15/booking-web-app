@@ -10,7 +10,6 @@ import { first } from 'rxjs/operators';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'] })
 export class HomeComponent {
-    token: Token | null;
     user: User = {
         firstName: ''
     }
@@ -18,12 +17,15 @@ export class HomeComponent {
     constructor(
         private authService: AuthenticationService,
         private userService: UsersService) {
-        this.token = this.authService.tokenValue;
-        userService.getUser('darasjohnson').subscribe(x => {
+        let currentUserId = localStorage.getItem('userId')
+        console.log('The current user: ' + currentUserId)
+        console.log('The current token: ' + authService.tokenValue)
+        this.userService.getUser(currentUserId).subscribe(x => {
             console.log(x)
             //map user
             this.user.firstName = x.firstName
             this.user.lastName = x.lastName
+
 
             console.log(this.user)
         })

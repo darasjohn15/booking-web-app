@@ -1,3 +1,4 @@
+import { JWTHelper } from './../helpers/jwt.helper';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Token } from '../models/token';
@@ -10,8 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-    private tokenSubject: BehaviorSubject<Token | null>
-    public token: Observable<Token | null>
+    private token: string | null
+    private currentUser: string | null
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -22,14 +23,20 @@ export class AuthenticationService {
     
     constructor(
         private http: HttpClient,
-        private router: Router){
-        this.tokenSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('token')!))
-        this.token = this.tokenSubject.asObservable();
+        private router: Router
+    ){
+
+        this.token = localStorage.getItem('token')
+        this.currentUser = localStorage.getItem('userId')
 
     }
 
     public get tokenValue() {
-        return this.tokenSubject.value
+        return this.token
+    }
+
+    public get currentUserId() {
+        return this.currentUser
     }
 
 
@@ -39,16 +46,23 @@ export class AuthenticationService {
     login(userName: string | undefined, password: string | undefined): Observable<Token>{
         let url = "http://127.0.0.1:8085/login"
         return this.http.post<Token>(url, { userName, password })
-        .pipe(map((token: any) => {
-            localStorage.setItem('token', JSON.stringify(token))
-            this.tokenSubject.next(token)
+        .pipe(map((token: Token) => {
+
+            this.token = token.token!
+            console.log('Authentication Service: ' + this.token)
+            localStorage.setItem('token', token.token!)
+            localStorage.setItem('userId', JWTHelper.GetCurrentUserId(token))
+            
+            
             return token
         }));
     }
 
     logout() {
         localStorage.removeItem('token')
-        this.tokenSubject.next(null)
+        localStorage.removeItem('userId')
+        this.token = null
+        this.currentUser = null
         this.router.navigate(['Login'])
     }
 

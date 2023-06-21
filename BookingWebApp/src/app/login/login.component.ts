@@ -51,8 +51,7 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe({
             next: (response) => {
-            console.log(response)
-            console.log('Lets reroute and send that token!')
+            localStorage.setItem('token', response.token!)
             this.router.navigateByUrl('')
             },
             error: (error) => console.log(error),
