@@ -1,34 +1,25 @@
-import { HomeComponent } from './home/home.component';
-//services
-import { AuthenticationService } from './services/authentication.sevice';
-
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { AuthenticationService } from 'src/app/services/authentication.sevice';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventsComponent } from './events/events.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
-    EventsComponent,
-    LoginComponent,
-    HomeComponent
+    LoginComponent
   ],
-  providers: [
-    AuthenticationService
-  ],
+  providers: [ AuthenticationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

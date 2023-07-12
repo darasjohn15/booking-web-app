@@ -1,25 +1,20 @@
-import { AuthenticationService } from './services/authentication.sevice';
-import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
-import { inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { authGuard } from './login/auth.guard';
+import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './guards/auth/auth.guard';
 
 
 const routes: Routes = [
-  //otherwise redirect to home
-  { path: '', 
-    component: HomeComponent, 
-    canActivate: [authGuard]
-  },
-  { path: 'Events', 
-    component: EventsComponent,
-    canActivate: [authGuard]
-  },
-  { path: 'Login', component: LoginComponent}
-]
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'admin',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  }
+];
 
 @NgModule({
   declarations: [],
