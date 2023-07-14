@@ -1,3 +1,4 @@
+import { EventsComponent } from './components/events/events.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ const routes: Routes = [
         component: DashboardComponent,
         children: [
             { path: 'home', component: HomeComponent },
+            { path: 'events', component: EventsComponent },
             { path: '', redirectTo: '/admin/home', pathMatch: 'full' }
         ]
     }

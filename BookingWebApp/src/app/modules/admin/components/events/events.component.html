@@ -1,0 +1,30 @@
+<div class="container pt-5 pb-5">
+    <div id="eventPageTitle" class="text-center pb-5">
+        <h1 class="display-1">Events</h1>
+    </div>
+    <button (click)="openAddEditEventForm()">Add Event</button>
+    <div id="eventsPageDetails" class="pt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Venue</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                  </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events">
+                    <td>{{ event.id }}</td>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.location }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>
+                        <button (click)="cancelEvent(event.id)">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
