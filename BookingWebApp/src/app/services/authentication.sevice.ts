@@ -20,6 +20,7 @@ export class AuthenticationService {
     constructor(private router: Router, private http: HttpClient) {}
 
     setToken(token: string): void {
+        console.log('Auth Serivce: Setting session token - ' + token)
         localStorage.setItem('token', token);
     }
 
@@ -27,62 +28,55 @@ export class AuthenticationService {
         return localStorage.getItem('token');
     }
 
-    isLoggedIn() {
-        return this.getToken() !== null;
+    clearToken(): void {
+        localStorage.clear()
+        console.log('Auth Service: Session token cleared.')
     }
 
-    logout() {
-        localStorage.removeItem('token');
-        this.router.navigate(['login']);
+    setUserId(token: string): void {
+        let userId = JWTHelper.GetCurrentUserId(token)
+        console.log('Auth Service: Setting session user - ' + userId)
+        localStorage.setItem('userId', userId)
     }
-    
-      login({ userName, password }: any): Observable<any> {
+
+    isLoggedIn(): boolean {
+        
+        if (this.getToken() !== null) {
+            if(!JWTHelper.isTokenExpired(this.getToken()!)) {
+                console.log("Auth Service: The token is valid.")
+                return true
+            }
+            else {
+                console.log("Auth Service: The token has expired.")
+                this.logout();
+                return false;
+            }
+        }
+        else {
+            console.log("Auth Service: The token is null.")
+            return false;
+        }
+        
+        
+    }
+
+    login({ userName, password }: any): Observable<any> {
         let url = "http://127.0.0.1:8085/login"
         return this.http.post<Token>(url, { userName, password })
-         .pipe(map((token: Token) => {
+            .pipe(map((token: Token) => {
+    
+                console.log('Authentication Service: ' + token)
+                
+                this.setToken(token.token!)
+                this.setUserId(token.token!)
+                
+                return token
+            }));
+        }
 
-             console.log('Authentication Service: ' + token)
-             this.setToken(token.token!)
-             localStorage.setItem('userId', JWTHelper.GetCurrentUserId(token))
-            
-            
-             return token
-         }));
-      }
-    }
-
-
-    // needs to be a POST method, not Get
-    // needs to send a JSON object with userName and Password
-    // need to receive a JSON object with the token & userId
-    // login(userName: string | undefined, password: string | undefined): Observable<Token>{
-    //     let url = "http://127.0.0.1:8085/login"
-    //     return this.http.post<Token>(url, { userName, password })
-    //     .pipe(map((token: Token) => {
-
-    //         this.token = token.token!
-    //         console.log('Authentication Service: ' + this.token)
-    //         localStorage.setItem('token', token.token!)
-    //         localStorage.setItem('userId', JWTHelper.GetCurrentUserId(token))
-            
-            
-    //         return token
-    //     }));
-    // }
-
-    // logout() {
-    //     localStorage.removeItem('token')
-    //     localStorage.removeItem('userId')
-    //     this.token = null
-    //     this.currentUser = null
-    //     this.router.navigate(['Login'])
-    // }
-
-    // isLoggedIn() {
-    //     if (localStorage.getItem('token')) {
-    //         return true
-    //     }
-        
-    //     return false
-    // }
-//}
+    logout() {
+        console.log('Auth Service: Logging out...')
+        this.clearToken()
+        this.router.navigate(['login']);
+    } 
+}
