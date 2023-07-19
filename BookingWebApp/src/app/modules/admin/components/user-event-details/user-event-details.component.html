@@ -1,0 +1,51 @@
+<div mat-dialog-title>
+    <h1>{{ event.name }}</h1>
+</div>
+
+<div mat-dialog-content class="content">
+    <h2>Event Location:</h2>
+    <p>{{ event.location }}</p>
+
+    <h2>Event Date:</h2>
+    <p>{{ event.date }}</p>
+
+    <h2>Event Performers:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Performer</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let performer of event.performers">
+                <td>{{ performer }}</td>
+                <td>
+                    <button (click)="removePerformer(performer)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Requesting Performers:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Performer</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let performer of event.requestedPerformers">
+                <td>{{ performer }}</td>
+                <td>
+                    <button (click)="approvePerformer(performer)">Approve</button>
+                </td>
+                <td>
+                    <button (click)="denyPerformer(performer)">Deny</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

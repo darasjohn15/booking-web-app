@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog'
 import { EventAddEditComponent } from '../event-add-edit/event-add-edit.component';
 import { Event } from 'src/app/models/event';
+import { EventDetailsComponent } from '../event-details/event-details.component';
 
 @Component({
   selector: 'app-events',
@@ -50,5 +51,9 @@ export class EventsComponent implements OnInit {
         }
       } 
     });
+  }
+
+  openEventDetails(id: any) {
+    this._dialog.open(EventDetailsComponent, {data: id} );
   }
 }

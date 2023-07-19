@@ -1,8 +1,8 @@
 <div class="container pt-5 pb-5">
     <div id="eventPageTitle" class="text-center pb-5">
-        <h1 class="display-1">Events</h1>
+        <h1 class="display-1">My Events</h1>
     </div>
-    <button (click)="openAddEditEventForm()">Add Event</button>
+    <button>Add Event</button>
     <div id="eventsPageDetails" class="pt-5">
         <table class="table">
             <thead>
@@ -11,6 +11,8 @@
                     <th scope="col">Event</th>
                     <th scope="col">Venue</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Active</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
             </thead>
@@ -20,8 +22,13 @@
                     <td>{{ event.name }}</td>
                     <td>{{ event.location }}</td>
                     <td>{{ event.date }}</td>
+                    <td>{{ event.active }}</td>
                     <td>
                         <button (click)="openEventDetails(event.id)">Open</button>
+                    </td>
+                    <td>
+                        <button *ngIf="event.active" (click)="cancelEvent(event.id)">Cancel</button>
+                        <button *ngIf="!event.active">Activate</button>
                     </td>
                 </tr>
             </tbody>

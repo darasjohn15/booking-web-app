@@ -1,0 +1,24 @@
+<!-- <div class="pt-2">
+    <button mat-dialog-close class="btn-close"></button>
+</div> -->
+
+<div mat-dialog-title>
+    <h1>{{ event.name }}</h1>
+</div>
+
+<div mat-dialog-content class="content">
+    <h2>Event Location:</h2>
+    <p>{{ event.location }}</p>
+
+    <h2>Event Date:</h2>
+    <p>{{ event.date }}</p>
+
+    <h2>Event Performers:</h2>
+    <p>{{ event.performers }}</p>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" color="primary" (click)="requestToPerform()">Request to Perform</button>
+    </div>
+</div>
+
+

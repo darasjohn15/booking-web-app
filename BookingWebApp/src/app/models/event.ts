@@ -3,4 +3,7 @@ export class Event {
     name?: string;
     date?: string;
     location?: string;
+    performers?: string[];
+    requestedPerformers?: string[];
+    active?: boolean;
 }

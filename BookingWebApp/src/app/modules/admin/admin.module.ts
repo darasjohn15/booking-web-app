@@ -24,6 +24,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EventsService } from 'src/app/services/events.service';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { UserEventsComponent } from './components/user-events/user-events.component';
+import { UserEventDetailsComponent } from './components/user-event-details/user-event-details.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,7 @@ import { EventsService } from 'src/app/services/events.service';
     FooterComponent, 
     HomeComponent, 
     EventsComponent, 
-    EventAddEditComponent
+    EventAddEditComponent, EventDetailsComponent, UserEventsComponent, UserEventDetailsComponent, SettingsComponent
 ],
   imports: [
     CommonModule, 
