@@ -6,4 +6,5 @@ export class Event {
     performers?: string[];
     requestedPerformers?: string[];
     active?: boolean;
+    hostID?: string;
 }

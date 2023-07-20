@@ -1,0 +1,22 @@
+.main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1348px;
+    min-height: 600px;
+}
+
+.event-img {
+    height: 100px;
+    width: 100px;
+}
+
+.btn-add-event {
+    float: right;
+    margin-bottom: 20px;
+    background-color: #BE3E82;
+    color:white;
+}
+
+.btn-details {
+    background-color: #8F3985;
+}

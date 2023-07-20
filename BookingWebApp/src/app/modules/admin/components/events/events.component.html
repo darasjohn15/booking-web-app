@@ -2,29 +2,16 @@
     <div id="eventPageTitle" class="text-center pb-5">
         <h1 class="display-1">Events</h1>
     </div>
-    <button (click)="openAddEditEventForm()">Add Event</button>
-    <div id="eventsPageDetails" class="pt-5">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Event</th>
-                    <th scope="col">Venue</th>
-                    <th scope="col">Date</th>
-                    <th scope="col"></th>
-                  </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let event of events">
-                    <td>{{ event.id }}</td>
-                    <td>{{ event.name }}</td>
-                    <td>{{ event.location }}</td>
-                    <td>{{ event.date }}</td>
-                    <td>
-                        <button (click)="openEventDetails(event.id)">Open</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container responsive-grid">
+        <div class="card" style="width: 18rem;" *ngFor="let event of events">
+            <img class="card-img-top" src="assets/logoLips.png" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">{{ event.name }}</h2>
+              <p class="card-text">This is a short description of the event to draw the user in.</p>
+              <button class="btn btn-secondary" (click)="openEventDetails(event.id)">Details</button>
+            </div>
+          </div>
     </div>
 </div>
+
+

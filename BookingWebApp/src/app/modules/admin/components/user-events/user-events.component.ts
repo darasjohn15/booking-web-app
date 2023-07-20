@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EventsService } from "src/app/services/events.service";
 import { Component, OnInit } from '@angular/core';
 import { Event } from "src/app/models/event";
+import { EventAddEditComponent } from '../event-add-edit/event-add-edit.component';
 
 @Component({
   selector: 'app-user-events',
@@ -33,8 +34,22 @@ export class UserEventsComponent implements OnInit{
   }
 
   openEventDetails(id: any) {
-    this.dialog.open(UserEventDetailsComponent, {data: id})
+    const dialogRef = this.dialog.open(UserEventDetailsComponent, {data: id})
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        this.getEventsList()
+      }
+    })
   }
 
-
+  openAddEditEventForm() {
+    const dialogRef = this.dialog.open(EventAddEditComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getEventsList();
+        }
+      } 
+    });
+  }
 }

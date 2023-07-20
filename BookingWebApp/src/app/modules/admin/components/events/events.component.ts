@@ -14,11 +14,17 @@ export class EventsComponent implements OnInit {
   events: Event[] = []
   idCount = 5
 
+  testEvent: Event;
+
   constructor(
     private _dialog: MatDialog,
     private eventsService: EventsService,
     private changeDetector: ChangeDetectorRef
-  ) {}
+  ) {
+    this.testEvent = {
+      name: 'Test Event'
+    }
+  }
 
   ngOnInit(): void {
     this.getEventsList()
@@ -41,18 +47,7 @@ export class EventsComponent implements OnInit {
     this.eventsService.cancelEvent(id).subscribe()
     this.getEventsList()
   }
-
-  openAddEditEventForm() {
-    const dialogRef = this._dialog.open(EventAddEditComponent);
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getEventsList();
-        }
-      } 
-    });
-  }
-
+  
   openEventDetails(id: any) {
     this._dialog.open(EventDetailsComponent, {data: id} );
   }

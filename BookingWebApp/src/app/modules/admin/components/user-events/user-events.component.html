@@ -1,34 +1,34 @@
-<div class="container pt-5 pb-5">
-    <div id="eventPageTitle" class="text-center pb-5">
+<div class="container main-body pt-5 pb-5">
+    <div id="eventPageTitle" class="text-center pb-4">
         <h1 class="display-1">My Events</h1>
     </div>
-    <button>Add Event</button>
+    <button class="btn btn-primary-pink btn-add-event" (click)="openAddEditEventForm()">Add Event</button>
     <div id="eventsPageDetails" class="pt-5">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col"></th>
                     <th scope="col">Event</th>
                     <th scope="col">Venue</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Active</th>
-                    <th scope="col"></th>
+                    <th scope="col">Status</th>
                     <th scope="col"></th>
                   </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let event of events">
-                    <td>{{ event.id }}</td>
-                    <td>{{ event.name }}</td>
-                    <td>{{ event.location }}</td>
-                    <td>{{ event.date }}</td>
-                    <td>{{ event.active }}</td>
                     <td>
-                        <button (click)="openEventDetails(event.id)">Open</button>
+                        <img class="event-img" src="assets/logoLips.png">
+                    </td>
+                    <td><h3>{{ event.name }}</h3></td>
+                    <td><h3>{{ event.location }}</h3></td>
+                    <td><h3>{{ event.date }}</h3></td>
+                    <td>
+                        <button class="btn btn-success" *ngIf="event.active">Active</button>
+                        <button class="btn btn-danger" *ngIf="!event.active">Cancelled</button>
                     </td>
                     <td>
-                        <button *ngIf="event.active" (click)="cancelEvent(event.id)">Cancel</button>
-                        <button *ngIf="!event.active">Activate</button>
+                        <button class="btn btn-secondary btn-details"(click)="openEventDetails(event.id)">Details</button>
                     </td>
                 </tr>
             </tbody>

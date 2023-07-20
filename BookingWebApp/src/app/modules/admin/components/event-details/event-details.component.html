@@ -1,22 +1,49 @@
-<!-- <div class="pt-2">
-    <button mat-dialog-close class="btn-close"></button>
-</div> -->
-
 <div mat-dialog-title>
     <h1>{{ event.name }}</h1>
 </div>
 
 <div mat-dialog-content class="content">
-    <h2>Event Location:</h2>
-    <p>{{ event.location }}</p>
-
-    <h2>Event Date:</h2>
-    <p>{{ event.date }}</p>
-
-    <h2>Event Performers:</h2>
-    <p>{{ event.performers }}</p>
-
-    <div mat-dialog-actions class="action">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    <h2>Event Location:</h2>
+                </td>
+                <td>
+                    <p>{{ event.location }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Event Date:</h2>
+                </td>
+                <td>
+                    <p>{{ event.date }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Event Host:</h2>
+                </td>
+                <td>
+                    <p>{{ hostName }}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Performers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let performer of performers">
+                <td>{{ performer }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div mat-dialog-actions class="action" *ngIf="!isUsersEvent()">
         <button mat-raised-button type="button" color="primary" (click)="requestToPerform()">Request to Perform</button>
     </div>
 </div>

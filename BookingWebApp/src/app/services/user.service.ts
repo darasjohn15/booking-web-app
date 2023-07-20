@@ -9,18 +9,20 @@ import { ResponseMessage } from '../models/response-message';
 })
 export class UsersService {
     
-    private token?: string
-    private userId?: string
-    private requestHeaders: HttpHeaders
     private baseUrl: string = "http://127.0.0.1:8085/users/"
 
-    constructor(private http: HttpClient){
-        this.token = localStorage.getItem('token')!
-        this.userId = localStorage.getItem('userId')!;
+    constructor(private http: HttpClient) { }
 
-        this.requestHeaders = new HttpHeaders()
+    getRequestHeaders(): HttpHeaders {
+        let requestHeaders = new HttpHeaders()
         .set('content-type', 'application/json')
-        .set('x-access-token', this.token!)
+        .set('x-access-token', localStorage.getItem('token')!)
+
+        return requestHeaders
+    }
+
+    getUserId(): string {
+        return localStorage.getItem('userId')!
     }
 
     getUsers(): Observable<User[]> {
@@ -30,30 +32,36 @@ export class UsersService {
 
     getCurrentUser(): Observable<User> {
         console.log("Users Service: Getting Current User Info")
-        let url = this.baseUrl + this.userId + "/" + this.userId
-        return this.http.get<User>(url, { headers: this.requestHeaders});
+        let url = this.baseUrl + this.getUserId() + "/" + this.getUserId()
+        return this.http.get<User>(url, { headers: this.getRequestHeaders()});
+    }
+
+    getUser(otherUserId: string): Observable<User> {
+        console.log("Users Service: Getting User Info - " + this.getUserId())
+        let url = this.baseUrl + this.getUserId() + "/" + otherUserId
+        return this.http.get<User>(url, { headers: this.getRequestHeaders() });
     }
 
     deactivateUser(): Observable<ResponseMessage> {
-        console.log("Users Service: Deactivating User - " + this.userId)
-        let url = this.baseUrl + this.userId
-        return this.http.delete<ResponseMessage>(url, {headers: this.requestHeaders}) 
+        console.log("Users Service: Deactivating User - " + this.getUserId())
+        let url = this.baseUrl + this.getUserId()
+        return this.http.delete<ResponseMessage>(url, {headers: this.getRequestHeaders()}) 
     }
 
     createUser(user: any): Observable<ResponseMessage> {
         console.log('Users Service: Creating New User')
-        return this.http.post<ResponseMessage>(this.baseUrl, user, {headers: this.requestHeaders})
+        return this.http.post<ResponseMessage>(this.baseUrl, user, {headers: this.getRequestHeaders()})
     }
 
     editUser(info: any): Observable<ResponseMessage> {
         console.log('Users Service: Editing User Info')
-        let url = this.baseUrl + this.userId
-        return this.http.put<ResponseMessage>(url, info, { headers: this.requestHeaders })
+        let url = this.baseUrl + this.getUserId()
+        return this.http.put<ResponseMessage>(url, info, { headers: this.getRequestHeaders() })
     }
 
     changePassword(info: any): Observable<ResponseMessage> {
         console.log('Users Service: Updating User Password')
-        let url = this.baseUrl + 'password/' + this.userId
-        return this.http.put<ResponseMessage>(url, info, { headers: this.requestHeaders })
+        let url = this.baseUrl + 'password/' + this.getUserId()
+        return this.http.put<ResponseMessage>(url, info, { headers: this.getRequestHeaders() })
     }
 }

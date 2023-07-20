@@ -1,0 +1,21 @@
+.btn-logout {
+    float: right;
+}
+
+.menu-items {
+    float: right;
+}
+
+.bg-primary-pink {
+    background-color: #BE3E82;
+}
+
+nav {
+    height: 90px;
+}
+
+.navbar-logo {
+    height: 70px;
+    width: 70px;
+    margin-right: 10px;
+}

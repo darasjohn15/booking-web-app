@@ -3,11 +3,35 @@
 </div>
 
 <div mat-dialog-content class="content">
-    <h2>Event Location:</h2>
-    <p>{{ event.location }}</p>
-
-    <h2>Event Date:</h2>
-    <p>{{ event.date }}</p>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    <h2>Event Location:</h2>
+                </td>
+                <td>
+                    <p>{{ event.location }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Event Date:</h2>
+                </td>
+                <td>
+                    <p>{{ event.date }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Status:</h2>
+                </td>
+                <td>
+                    <p class="text-danger" *ngIf="!event.active">Cancelled</p>
+                    <p class="text-success"*ngIf="event.active">Active</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <h2>Event Performers:</h2>
     <table class="table">
@@ -21,7 +45,7 @@
             <tr *ngFor="let performer of event.performers">
                 <td>{{ performer }}</td>
                 <td>
-                    <button (click)="removePerformer(performer)">Remove</button>
+                    <button class="btn btn-danger"(click)="removePerformer(performer)">Remove</button>
                 </td>
             </tr>
         </tbody>
@@ -40,12 +64,17 @@
             <tr *ngFor="let performer of event.requestedPerformers">
                 <td>{{ performer }}</td>
                 <td>
-                    <button (click)="approvePerformer(performer)">Approve</button>
+                    <button class="btn btn-success"(click)="approvePerformer(performer)">Approve</button>
                 </td>
                 <td>
-                    <button (click)="denyPerformer(performer)">Deny</button>
+                    <button class="btn btn-danger"(click)="denyPerformer(performer)">Deny</button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div>
+        <button class="btn btn-danger" *ngIf="event.active" (click)="cancelEvent()">Cancel this Event</button>
+        <button class="btn btn-success" *ngIf="!event.active" (click)="activateEvent()">Re-activate this Event</button>
+        <button class="btn btn-primary">Edit</button>
+    </div>
 </div>
