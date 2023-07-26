@@ -1,21 +1,43 @@
-.btn-logout {
-    float: right;
-}
-
-.menu-items {
-    float: right;
-}
-
 .bg-primary-pink {
     background-color: #BE3E82;
 }
 
-nav {
-    height: 90px;
+.navbar-section {
+    width: 100%;
+    height: 100vh;
+    background-color: #BE3E82;
+}
+
+.navbar-logo-section {
+    height: 10vh;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .navbar-logo {
     height: 70px;
     width: 70px;
     margin-right: 10px;
+}
+
+.navbar-menu-items {
+    width: 100%;
+    height: 80vh;
+    text-align: center;
+    padding-top: 50px;
+    /* padding-right: 50px; */
+}
+
+.nav-item {
+    font-size: large;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.navbar-logout-section {
+    width: 100%;
+    height: 10vh;
+    text-align: center;
+    padding-top: 20px;
 }

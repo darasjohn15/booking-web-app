@@ -1,17 +1,15 @@
-<div class="container main-body pt-5 pb-5">
-    <div id="eventPageTitle" class="text-center pb-4">
-        <h1 class="display-1">My Events</h1>
+<div class="container main-body">
+    <div class="user-events-title-section">
+        <span>My Events</span>
+        <span><button class="btn btn-primary-pink btn-add-event" (click)="openAddEditEventForm()">Add Event</button></span>
     </div>
-    <button class="btn btn-primary-pink btn-add-event" (click)="openAddEditEventForm()">Add Event</button>
-    <div id="eventsPageDetails" class="pt-5">
+    
+    <div id="eventsPageDetails">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col"></th>
                     <th scope="col">Event</th>
-                    <th scope="col">Venue</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Status</th>
                     <th scope="col"></th>
                   </tr>
             </thead>
@@ -21,12 +19,6 @@
                         <img class="event-img" src="assets/logoLips.png">
                     </td>
                     <td><h3>{{ event.name }}</h3></td>
-                    <td><h3>{{ event.location }}</h3></td>
-                    <td><h3>{{ event.date }}</h3></td>
-                    <td>
-                        <button class="btn btn-success" *ngIf="event.active">Active</button>
-                        <button class="btn btn-danger" *ngIf="!event.active">Cancelled</button>
-                    </td>
                     <td>
                         <button class="btn btn-secondary btn-details"(click)="openEventDetails(event.id)">Details</button>
                     </td>

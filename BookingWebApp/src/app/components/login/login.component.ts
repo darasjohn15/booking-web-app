@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
     userName: new FormControl(''),
     password: new FormControl(''),
   });
+
+  loginFail: boolean = false;
+
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
@@ -29,9 +32,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin']);
         },
         (err: Error) => {
-          alert(err.message);
+          this.loginFail = true
         }
       );
     }
+  }
+
+  getLoginFail(): boolean {
+    return this.loginFail
   }
 }

@@ -2,6 +2,15 @@
     height: 100%;
 }
 
-app-footer {
-    bottom: 0;
+.nav-section {
+    min-height: 740px;
+    width: 20%;
+    float: left;
+}
+
+.main-section {
+    height: 100vh;
+    width: 80%;
+    float: right;
+    overflow: scroll;
 }

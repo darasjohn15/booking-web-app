@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.sevice';
 import { UsersService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
+import { CoreService } from 'src/app/core/core.service';
 
 @Component({
   selector: 'app-settings',
@@ -18,7 +21,9 @@ export class SettingsComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private coreService: CoreService,
+    private dialog: MatDialog
     ) {
       this.user = new User()
       this.accountInfoForm = this.fb.group({
@@ -35,13 +40,24 @@ export class SettingsComponent implements OnInit{
     }
 
     ngOnInit(): void {
-      this.usersService.getCurrentUser().subscribe(data => this.user = data)
+      this.getAccountInfo();
+    }
+
+    getAccountInfo(): void {
+      this.usersService.getCurrentUser().subscribe({
+        next: (res) => {
+          console.log(res)
+          this.user = res
+        }
+      })
     }
 
   onAccountInfoFormSubmit(): void {
     this.usersService.editUser(this.accountInfoForm.value).subscribe({
       next: (res) => {
         console.log(res)
+        this.coreService.openSnackBar("Account Info Saved!")
+        this.getAccountInfo()
       }
     })
   }
@@ -57,6 +73,7 @@ export class SettingsComponent implements OnInit{
       this.usersService.changePassword(this.passwordForm.value).subscribe({
         next: (res) => {
           console.log(res)
+          this.coreService.openSnackBar("Password Updated!")
         },
         error: (err) => {
           console.error(err)
@@ -76,4 +93,19 @@ export class SettingsComponent implements OnInit{
     })
   }
 
+  openConfirmationDialog() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Do you want to deactivate your account?'
+      },
+      width: '30%',
+      height: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.deactivateAccount();
+      }
+    })
+  }
 }

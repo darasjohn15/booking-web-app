@@ -3,3 +3,42 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 24px;
 }
+
+.main-section {
+    width: 100%;
+    background-color: white;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid grey;
+    box-shadow: 3px 3px #555;
+}
+
+.event-page-title {
+    width: 100%;
+    height: auto;
+    line-height: 50px;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.event-card {
+    background-color: #F2BAC9;
+    border: 1px solid #BE3E82;
+    box-shadow: 2px 2px #BE3E82;
+}
+
+.event-card-title {
+    color: #BE3E82;
+    overflow: hidden;
+    padding-top: 10px;
+    
+}
+
+.event-card-description {}
+
+.btn-details {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #BE3E82;
+}

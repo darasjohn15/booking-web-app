@@ -1,16 +1,18 @@
-<div class="container pt-5 pb-5">
-    <div id="eventPageTitle" class="text-center pb-5">
-        <h1 class="display-1">Events</h1>
+<div class="container pt-4 pb-5">
+    <div class="event-page-title">
+        Events
     </div>
-    <div class="container responsive-grid">
-        <div class="card" style="width: 18rem;" *ngFor="let event of events">
-            <img class="card-img-top" src="assets/logoLips.png" alt="Card image cap">
-            <div class="card-body">
-              <h2 class="card-title">{{ event.name }}</h2>
-              <p class="card-text">This is a short description of the event to draw the user in.</p>
-              <button class="btn btn-secondary" (click)="openEventDetails(event.id)">Details</button>
+    <div class="container main-section">
+      <div class="container responsive-grid">
+          <div class="card event-card" style="width: 18rem;" *ngFor="let event of events">
+              <img class="card-img-top" src="assets/bookingAppNavbarLogo.png" alt="Card image cap">
+              <div class="card-body">
+                <h2 class="card-title event-card-title">{{ event.name }}</h2>
+                <p class="card-text card-event-description">This is a short description of the event to draw the user in.</p>
+                <button class="btn btn-secondary btn-details" (click)="openEventDetails(event.id)">Details</button>
+              </div>
             </div>
-          </div>
+      </div>
     </div>
 </div>
 

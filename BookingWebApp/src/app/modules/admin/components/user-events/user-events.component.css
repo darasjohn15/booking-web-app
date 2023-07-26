@@ -1,8 +1,11 @@
 .main-body {
+    background-color: white;
     padding-top: 20px;
-    margin: 0 auto;
-    max-width: 1348px;
-    min-height: 600px;
+}
+
+.user-events-title-section {
+    font-size: 30px;
+    padding-left: 20px;
 }
 
 .event-img {
@@ -12,9 +15,9 @@
 
 .btn-add-event {
     float: right;
-    margin-bottom: 20px;
     background-color: #BE3E82;
     color:white;
+    font-size: 15px;
 }
 
 .btn-details {

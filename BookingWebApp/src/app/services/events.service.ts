@@ -85,9 +85,15 @@ export class EventsService {
         return this.http.get<ResponseMessage>(url, {headers: this.getRequestHeaders()})
     }
 
-    createEvent(event: any): Observable<any> {
+    cancelPerformance(eventId: string): Observable<ResponseMessage> {
+        console.log('Cancelling performance for Event - ' + eventId)
+        let url = this.baseUrl + "remove/" + this.getUserId() + "?eventId=" + eventId + "&userId=" + this.getUserId()
+        return this.http.get<ResponseMessage>(url, { headers: this.getRequestHeaders() })
+    }
+
+    createEvent(event: any): Observable<ResponseMessage> {
         console.log('Events Service: Creating New Event...')
         let url = this.baseUrl + this.getUserId()
-        return this.http.post(url, event, {headers: this.getRequestHeaders()})
+        return this.http.post<ResponseMessage>(url, event, {headers: this.getRequestHeaders()})
     }
 }

@@ -36,7 +36,11 @@ import { SettingsComponent } from './components/settings/settings.component';
     FooterComponent, 
     HomeComponent, 
     EventsComponent, 
-    EventAddEditComponent, EventDetailsComponent, UserEventsComponent, UserEventDetailsComponent, SettingsComponent
+    EventAddEditComponent, 
+    EventDetailsComponent, 
+    UserEventsComponent, 
+    UserEventDetailsComponent, 
+    SettingsComponent
 ],
   imports: [
     CommonModule, 
