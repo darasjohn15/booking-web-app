@@ -16,27 +16,24 @@ Hosts can view, approve, or deny applications with ease
 
 ## Tech Stack
 **Frontend**: Angular  
-**Backend**: Python (Flask or FastAPI assumed)  
+**Backend**: Python (Flask)  
 **Styling**: CSS  
 **Data**: Local storage (JSON)
 
 ## Getting Started
-**Clone the repo**
 ```
+# Clone the repo
 git clone https://github.com/darasjohn15/booking-web-app.git
-cd booking-web-app
-```
+cd BookingWebApp
 
-Install frontend dependencies
-```
+# Install frontend dependencies
 npm install
-```
 
-Run the frontend
-```
+# Run the frontend
 ng serve
+
+# Backend runs separately (see backend README or server folder)
 ```
-Backend runs separately (see backend README or server folder)
 
 ## Status
 This project is currently under development. Core functionality is working and actively being enhanced with new features and UI polish.
