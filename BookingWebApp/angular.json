@@ -68,7 +68,12 @@
               "browserTarget": "BookingWebApp:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "host": "127.0.0.1",
+            "port": 4200,
+            "browserTarget": "BookingWebApp:build"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

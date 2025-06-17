@@ -1,36 +1,46 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Event } from '../models/event';
 import { ResponseMessage } from '../models/response-message';
+import { Application } from '../models/application';
 
 @Injectable({
     providedIn: 'root'
 })
 export class EventsService {
     
-    private baseUrl: string = "http://127.0.0.1:8085/events/"
+    private baseUrl: string = "http://127.0.0.1:8085/events"
 
     constructor(private http: HttpClient) { }
 
     getRequestHeaders(): HttpHeaders {
-        let requestHeaders = new HttpHeaders()
-        .set('content-type', 'application/json')
-        .set('x-access-token', localStorage.getItem('token')!)
-
-        return requestHeaders
+        return new HttpHeaders({
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        })
     }
 
     getUserId(): string {
         return localStorage.getItem('userId')!
     }
 
-    getEvents(userId: string): Observable<Event[]> {
+    getEvents(): Observable<Event[]> {
         console.log("Events Service: Getting All Events.")
-        let url = this.baseUrl + userId
+        let url = this.baseUrl
         return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
     }
 
+    getHostEvents(hostId: string): Observable<Event[]> {
+        console.log("Events Service: Getting All Host's Events.")
+        let url = this.baseUrl + "/host/" + hostId
+        return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
+    }
+
+    getEvent(eventId: string): Observable<Event[]> {
+        console.log("Events Service: Getting Event - " + eventId)
+        let url = this.baseUrl + "/" + eventId
+        return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
+    }
     getActiveEvents(): Observable<Event[]> {
         console.log("Events Service: Getting All Active Events...")
         let url = this.baseUrl + "active/" + this.getUserId()
@@ -91,9 +101,39 @@ export class EventsService {
         return this.http.get<ResponseMessage>(url, { headers: this.getRequestHeaders() })
     }
 
-    createEvent(event: any): Observable<ResponseMessage> {
+    createEvent(eventData: any): Observable<ResponseMessage> {
         console.log('Events Service: Creating New Event...')
-        let url = this.baseUrl + this.getUserId()
-        return this.http.post<ResponseMessage>(url, event, {headers: this.getRequestHeaders()})
+        let url = this.baseUrl
+        return this.http.post<ResponseMessage>(url, eventData, {headers: this.getRequestHeaders()})
+    }
+
+    getApplications(eventID: string){
+        console.log('Events Service: Getting Applications...')
+        let url = this.baseUrl + "/applications/" + eventID
+        return this.http.get<Application[]>(url, {headers: this.getRequestHeaders() })
+    }
+
+    getPerformerApplications(performerID: string){
+        console.log('Events Service: Getting Performers Applications...')
+        let url = this.baseUrl + "/applications/performer/" + performerID
+        return this.http.get<Application[]>(url, {headers: this.getRequestHeaders() })
+    }
+
+    approveApplication(applicationData: any): Observable<ResponseMessage> {
+        console.log('Events Service: Approving an Application...')
+        let url = this.baseUrl + "/applications/approve"
+        return this.http.post<ResponseMessage>(url, applicationData, {headers: this.getRequestHeaders()})
+    }
+
+    denyApplication(applicationData: any): Observable<ResponseMessage> {
+        console.log('Events Service: Denying an Application...')
+        let url = this.baseUrl + "/applications/deny"
+        return this.http.post<ResponseMessage>(url, applicationData, {headers: this.getRequestHeaders()})
+    }
+
+    applyToEvent(applicationData: any): Observable<ResponseMessage> {
+        console.log('Events Service: Applying to Event...')
+        let url = this.baseUrl + "/application"
+        return this.http.post<ResponseMessage>(url, applicationData, {headers: this.getRequestHeaders()})
     }
 }

@@ -2,25 +2,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
-import { authGuard } from './guards/auth/auth.guard';
-
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'host', loadChildren: () => import('./modules/host/host.module').then(m => m.HostModule) },
+  { path: 'performer', loadChildren: () => import('./modules/performer/performer.module').then(m => m.PerformerModule) },
   { path: 'login', component: LoginComponent },
-  {
-    path: 'admin',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
-  }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login' } // fallback
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    [RouterModule.forRoot(routes)]
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })

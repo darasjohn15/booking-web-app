@@ -1,4 +1,5 @@
 export class JWTpayload {
-    user?: string;
+    user_id?: string;
+    role?: string;
     exp?: number;
 }

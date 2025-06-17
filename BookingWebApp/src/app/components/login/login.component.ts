@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    userName: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl(''),
   });
 
@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
-      this.router.navigate(['admin']);
+      let role = this.auth.getRole();
+      if (role === 'host')
+        this.router.navigate(['/host']);
+      else
+        this.router.navigate(['/performer']);
     }
   }
   onSubmit(): void {
@@ -29,7 +33,14 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe(
         (result) => {
           console.log(result);
-          this.router.navigate(['/admin']);
+          const role = this.auth.getRole();
+          
+          if (role === 'host') {
+            this.router.navigate(['/host']);
+          }
+          else {
+            this.router.navigate(['/performer']);
+          }
         },
         (err: Error) => {
           this.loginFail = true

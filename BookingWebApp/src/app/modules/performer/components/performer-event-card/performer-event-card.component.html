@@ -1,0 +1,21 @@
+<div class="event-card">
+    <h3 class="event-title">{{ event.title }}</h3>
+    <p class="event-date">{{ event.date | date: 'mediumDate' }}</p>
+    <p class="event-location">{{ event.location }}</p>
+    <p class="event-description">{{ event.description }}</p>
+    <!-- <span class="event-status" [ngClass]="event.status.toLowerCase()">{{ event.status }}</span> -->
+  
+    <div class="event-actions">
+      <button class="btn btn-view" (click)="openView(event)">View</button>
+    </div>
+
+    <div *ngIf="showApplied" class="event-applied-status">
+        <p>Applied</p>
+    </div>
+  </div>
+  
+  <app-performer-event-view-modal
+  *ngIf="selectedEvent"
+  [event]="selectedEvent"
+  (close)="closeModal()"
+></app-performer-event-view-modal>

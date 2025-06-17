@@ -1,10 +1,10 @@
 export class Event {
     id?: string;
-    name?: string;
+    title?: string;
     date?: string;
-    location?: string;
+    userID?: string;
+    venueID?: string;
     performers?: string[];
-    requestedPerformers?: string[];
+    applications?: string[];
     active?: boolean;
-    hostID?: string;
 }

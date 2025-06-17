@@ -3,22 +3,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseMessage } from '../models/response-message';
+import { Message } from '../models/message';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UsersService {
     
-    private baseUrl: string = "http://127.0.0.1:8085/users/"
+    private baseUrl: string = "http://127.0.0.1:8085/users"
 
     constructor(private http: HttpClient) { }
 
     getRequestHeaders(): HttpHeaders {
-        let requestHeaders = new HttpHeaders()
-        .set('content-type', 'application/json')
-        .set('x-access-token', localStorage.getItem('token')!)
-
-        return requestHeaders
+        return new HttpHeaders({
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        })
     }
 
     getUserId(): string {
@@ -36,9 +35,9 @@ export class UsersService {
         return this.http.get<User>(url, { headers: this.getRequestHeaders()});
     }
 
-    getUser(otherUserId: string): Observable<User> {
-        console.log("Users Service: Getting User Info - " + this.getUserId())
-        let url = this.baseUrl + this.getUserId() + "/" + otherUserId
+    getUser(userId: string): Observable<User> {
+        console.log("Users Service: Getting User Info - " + userId)
+        let url = this.baseUrl + "/" + userId
         return this.http.get<User>(url, { headers: this.getRequestHeaders() });
     }
 
@@ -63,5 +62,23 @@ export class UsersService {
         console.log('Users Service: Updating User Password')
         let url = this.baseUrl + 'password/' + this.getUserId()
         return this.http.put<ResponseMessage>(url, info, { headers: this.getRequestHeaders() })
+    }
+
+    getMessages(): Observable<Message[]> {
+        console.log('Users Service: Getting User Messages')
+        let url = this.baseUrl + 'messages/' + this.getUserId()
+        return this.http.get<Message[]>(url, { headers: this.getRequestHeaders() })
+    }
+
+    sendMessage(message: Message): Observable<ResponseMessage> {
+        console.log('Users Service: Sending Message to User - ' + message.userId )
+        let url = this.baseUrl + 'messages/' + this.getUserId()
+        return this.http.post<ResponseMessage>(url, message, { headers: this.getRequestHeaders() })
+    }
+
+    readMessage(id: string): Observable<ResponseMessage> {
+        console.log('Users Service: Reading Message - ' + id )
+        let url = this.baseUrl + 'messages/read/' + this.getUserId() + '/' + id
+        return this.http.get<ResponseMessage>(url, { headers: this.getRequestHeaders() })
     }
 }

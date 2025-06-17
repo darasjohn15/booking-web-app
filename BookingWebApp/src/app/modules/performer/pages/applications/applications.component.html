@@ -1,0 +1,27 @@
+<app-performer-navbar></app-performer-navbar>
+<div class="applications-container">
+    <h2 class="applications-title">Applications</h2>
+  
+    <div *ngIf="applications.length === 0" class="applications-empty">
+      No applications found.
+    </div>
+  
+    <div class="applications-list">
+      <div *ngFor="let app of applications" class="application-card">
+        <div class="application-details">
+          <p class="application-event">{{ app.event_title }}</p>
+          <p class="application-event">{{ app.event_title }}</p>
+          <span
+            class="application-status"
+            [ngClass]="{
+              'status-pending': app.status === 'pending',
+              'status-approved': app.status === 'approved',
+              'status-denied': app.status === 'denied'
+            }"
+          >
+            {{ app.status | titlecase }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>

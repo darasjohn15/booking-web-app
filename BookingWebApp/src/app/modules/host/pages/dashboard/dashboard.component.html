@@ -1,0 +1,7 @@
+<app-host-navbar></app-host-navbar>
+<div class="dashboard-container">
+  <h3>Events:</h3>
+  <div class="event-grid">
+    <app-event-card *ngFor="let event of events" [event]="event" (editEvent)="onEditEvent($event)"></app-event-card>
+  </div>
+</div>

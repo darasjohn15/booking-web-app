@@ -1,0 +1,31 @@
+<app-host-navbar></app-host-navbar>
+
+<div class="create-event-container">
+  <h2>Create New Event</h2>
+
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
+    <div class="form-group">
+      <label for="title">Event Name</label>
+      <input id="title" type="text" formControlName="title" />
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input id="date" type="date" formControlName="date" />
+    </div>
+
+    <div class="form-group">
+      <label for="venue">Venue</label>
+      <select id="venue" formControlName="venueID" class="form-select">
+        <option *ngFor="let venue of venues" [value]="venue.id">{{ venue.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="eventForm.invalid">Create Event</button>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+<div class="modal-overlay" (click)="close.emit()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>{{ event.title }}</h2>
+      <p><strong>Date:</strong> {{ event.date | date }}</p>
+      <p><strong>Venue:</strong> {{ event.venueID }}</p>
+      <p><strong>Description:</strong> {{ event.description }}</p>
+      <button (click)="applyToEvent()" [disabled]="isDisabled">Apply</button>
+      <button (click)="close.emit()">Close</button>
+    </div>
+  </div>

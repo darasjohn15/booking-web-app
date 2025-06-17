@@ -1,0 +1,46 @@
+<app-host-navbar></app-host-navbar>
+
+<div class="applications-container">
+  <h2 class="applications-title">Pending Applications</h2>
+
+ <!-- Event Tabs -->
+<div class="event-tabs">
+  <button
+    *ngFor="let event of events"
+    (click)="selectEvent(event.id)"
+    [ngClass]="{
+      'active': selectedEventId === event.id,
+      'inactive': selectedEventId !== event.id
+    }"
+  >
+    {{ event.title }}
+  </button>
+</div>
+
+  <div *ngIf="applications.length === 0" class="applications-empty">
+    No applications found.
+  </div>
+
+  <div class="applications-list">
+    <div *ngFor="let app of applications" class="application-card">
+      <div class="application-details">
+        <p class="application-performer">{{ app.performer_name }}</p>
+        <p class="application-event">Applied for: <span>{{ app.event_title }}</span></p>
+        <span
+          class="application-status"
+          [ngClass]="{
+            'status-pending': app.status === 'pending',
+            'status-approved': app.status === 'approved',
+            'status-denied': app.status === 'denied'
+          }"
+        >
+          {{ app.status | titlecase }}
+        </span>
+      </div>
+      <div *ngIf="app.status === 'pending'" class="application-actions">
+        <button class="btn-approve" (click)="approve(app.id)">Approve</button>
+        <button class="btn-deny" (click)="deny(app.id)">Deny</button>
+      </div>
+    </div>
+  </div>
+</div>

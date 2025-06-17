@@ -10,8 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -25,7 +24,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
   declarations: [
     AppComponent,
     LoginComponent,
-    ConfirmationDialogComponent
+    NavbarComponent
   ],
   providers: [ AuthenticationService ],
   bootstrap: [AppComponent]

@@ -8,15 +8,14 @@
 
 html {
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
 } 
 
-body { 
-    height: 100%; 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: #F2BAC9;
-    overflow: auto; 
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #212529;
 }
 
 a {

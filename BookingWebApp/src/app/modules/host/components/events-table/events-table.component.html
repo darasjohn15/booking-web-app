@@ -1,0 +1,27 @@
+<div class="events-table-wrapper">
+    <h2 class="table-title">Your Upcoming Events</h2>
+    <table class="events-table">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.title }}</td>
+          <td>{{ event.date | date: 'mediumDate' }}</td>
+          <td>{{ event.location }}</td>
+          <td>
+            <span class="status-pill" [ngClass]="event.status">{{ event.status }}</span>
+          </td>
+          <td>
+            <button class="btn btn-view" (click)="viewEvent(event)">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
