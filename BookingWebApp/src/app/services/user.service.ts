@@ -10,7 +10,7 @@ import { Message } from '../models/message';
 })
 export class UsersService {
     
-    private baseUrl: string = "http://127.0.0.1:8085/users"
+    private baseUrl: string = "https://booking-app-apis.onrender.com/users"
 
     constructor(private http: HttpClient) { }
 

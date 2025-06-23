@@ -10,7 +10,7 @@ import { Application } from '../models/application';
 })
 export class EventsService {
     
-    private baseUrl: string = "http://127.0.0.1:8085/events"
+    private baseUrl: string = "https://booking-app-apis.onrender.com/events"
 
     constructor(private http: HttpClient) { }
 

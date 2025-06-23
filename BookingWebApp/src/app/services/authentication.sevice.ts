@@ -88,7 +88,7 @@ export class AuthenticationService {
     }
 
     login({ email, password }: any): Observable<any> {
-        let url = "http://127.0.0.1:8085/login"
+        let url = "https://booking-app-apis.onrender.com/login"
         return this.http.post<Token>(url, { email, password }).pipe(
             tap(response => {
                 const token = response.token!;
