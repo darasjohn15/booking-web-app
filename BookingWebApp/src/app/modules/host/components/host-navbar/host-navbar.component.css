@@ -59,3 +59,53 @@ a {
     background-color: #f87171;
     color: white;
   }
+
+  /* Hamburger button - hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Hide mobile menu by default */
+.navbar-links.mobile {
+  display: none;
+  flex-direction: column;
+  background-color: #1f2937;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  z-index: 1001;
+}
+
+.mobile-menu {
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+}
+
+/* Show hamburger and adjust layout on smaller screens */
+@media (max-width: 768px) {
+  .navbar-links.desktop {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .navbar-links.mobile {
+    display: flex;
+  }
+
+  .navbar-links.mobile a,
+  .navbar-links.mobile .logout-button {
+    margin: 0.5rem 0;
+    width: 100%;
+    text-align: left;
+  }
+}

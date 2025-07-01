@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Event } from '../models/event';
@@ -20,95 +20,33 @@ export class EventsService {
         })
     }
 
-    getUserId(): string {
-        return localStorage.getItem('userId')!
-    }
+    getEvents(filters: any = {}): Observable<Event[]> {
+        console.log("Events Service: Getting Events with filters:", filters);
 
-    getEvents(): Observable<Event[]> {
-        console.log("Events Service: Getting All Events.")
-        let url = this.baseUrl
-        return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
-    }
+        let params = new HttpParams();
+        for (let key in filters) {
+            if (filters[key] !== null && filters[key] !== undefined) {
+                params = params.set(key, filters[key]);
+            }
+        }
 
-    getHostEvents(hostId: string): Observable<Event[]> {
-        console.log("Events Service: Getting All Host's Events.")
-        let url = this.baseUrl + "/host/" + hostId
-        return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
+        return this.http.get<Event[]>(this.baseUrl, {
+            headers: this.getRequestHeaders(),
+            params: params
+        });
     }
 
     getEvent(eventId: string): Observable<Event[]> {
-        console.log("Events Service: Getting Event - " + eventId)
         let url = this.baseUrl + "/" + eventId
         return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
     }
-    getActiveEvents(): Observable<Event[]> {
-        console.log("Events Service: Getting All Active Events...")
-        let url = this.baseUrl + "active/" + this.getUserId()
-        return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()});
-    }
-
-    getEventDetails(eventId: string): Observable<Event> {
-        console.log("Events Service: Getting Event Details for EventID = " + eventId)
-        let url = this.baseUrl + this.getUserId() + "/" + eventId
-        return this.http.get<Event>(url, {headers: this.getRequestHeaders()})
-    }
-
-    getCurrentUserEvents(): Observable<Event[]> {
-        console.log('Event Service: Getting Events created by User - ' + this.getUserId());
-        let url = this.baseUrl + "host/" + this.getUserId() + "?host=" + this.getUserId()
-        return this.http.get<Event[]>(url, {headers: this.getRequestHeaders()})
-    }
-
-    cancelEvent(eventID: string): Observable<ResponseMessage> {
-        console.log("Events Service: Cancelling Event " + eventID)
-        let url = this.baseUrl + "cancel/" + this.getUserId() + "/" + eventID
-        return this.http.get(url, {headers: this.getRequestHeaders()});
-    }
-
-    activateEvent(eventID: string): Observable<ResponseMessage> {
-        console.log("Events Service: Activating Event " + eventID)
-        let url = this.baseUrl + "activate/" + this.getUserId() + "/" + eventID
-        return this.http.get(url, {headers: this.getRequestHeaders()});
-    }
-
-    request(eventId: string): Observable<ResponseMessage> {
-        console.log('Events Service: Requesting to perform at event.')
-        let url = this.baseUrl + "request/" + this.getUserId() + "?eventId=" + eventId + "&userId=" + this.getUserId()
-        return this.http.get<ResponseMessage>(url, {headers: this.getRequestHeaders()});
-    }
-
-    removePerformer(eventId: string, performerId: string): Observable<ResponseMessage> {
-        console.log('Removing Performer ' + performerId + ' from Event ' + eventId);
-        let url = this.baseUrl + "remove/" + this.getUserId() + "?eventId=" + eventId + "&userId=" + performerId
-        return this.http.get<ResponseMessage>(url, {headers: this.getRequestHeaders()})
-    }
-
-    approvePerformer(eventId: string, performerId: string): Observable<ResponseMessage> {
-        console.log('Approving Performer ' + performerId + ' from Event ' + eventId);
-        let url = this.baseUrl + "approve/" + this.getUserId() + "?eventId=" + eventId + "&userId=" + performerId
-        return this.http.get<ResponseMessage>(url, {headers: this.getRequestHeaders()})
-    }
-
-    denyPerformer(eventId: string, performerId: string): Observable<ResponseMessage> {
-        console.log('Denying Performer ' + performerId + ' from Event ' + eventId);
-        let url = this.baseUrl + "deny/" + this.getUserId() + "?eventId=" + eventId + "&userId=" + performerId
-        return this.http.get<ResponseMessage>(url, {headers: this.getRequestHeaders()})
-    }
-
-    cancelPerformance(eventId: string): Observable<ResponseMessage> {
-        console.log('Cancelling performance for Event - ' + eventId)
-        let url = this.baseUrl + "remove/" + this.getUserId() + "?eventId=" + eventId + "&userId=" + this.getUserId()
-        return this.http.get<ResponseMessage>(url, { headers: this.getRequestHeaders() })
-    }
 
     createEvent(eventData: any): Observable<ResponseMessage> {
-        console.log('Events Service: Creating New Event...')
         let url = this.baseUrl
         return this.http.post<ResponseMessage>(url, eventData, {headers: this.getRequestHeaders()})
     }
 
     getApplications(eventID: string){
-        console.log('Events Service: Getting Applications...')
         let url = this.baseUrl + "/applications/" + eventID
         return this.http.get<Application[]>(url, {headers: this.getRequestHeaders() })
     }

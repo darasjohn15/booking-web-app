@@ -1,12 +1,24 @@
 <nav class="navbar">
-    <div class="navbar-logo">
-      <span>MyBookingApp</span>
-    </div>
-  
-    <ul class="navbar-links">
-      <a routerLink="/host/dashboard" routerLinkActive="underline">Dashboard</a>
-      <a routerLink="/host/applications" routerLinkActive="underline">Applications</a>
-      <a routerLink="/host/create-event" routerLinkActive="underline">Create Event</a>
-      <button (click)="logout()" class="logout-button">Logout</button>
-    </ul>
-  </nav>
+  <div class="navbar-logo">
+    <span>MyBookingApp</span>
+  </div>
+
+  <!-- Hamburger icon (only visible on mobile) -->
+  <button class="hamburger" (click)="toggleMobileMenu()">&#9776;</button>
+
+  <!-- Desktop nav -->
+  <ul class="navbar-links desktop">
+    <a routerLink="/host/dashboard" routerLinkActive="underline">Dashboard</a>
+    <a routerLink="/host/applications" routerLinkActive="underline">Applications</a>
+    <a routerLink="/host/create-event" routerLinkActive="underline">Create Event</a>
+    <button (click)="logout()" class="logout-button">Logout</button>
+  </ul>
+
+  <!-- Mobile nav (only shows if menu is open) -->
+  <ul class="navbar-links mobile" *ngIf="mobileMenuOpen">
+    <a routerLink="/host/dashboard" routerLinkActive="underline" (click)="toggleMobileMenu()">Dashboard</a>
+    <a routerLink="/host/applications" routerLinkActive="underline" (click)="toggleMobileMenu()">Applications</a>
+    <a routerLink="/host/create-event" routerLinkActive="underline" (click)="toggleMobileMenu()">Create Event</a>
+    <button (click)="logout()" class="logout-button">Logout</button>
+  </ul>
+</nav>

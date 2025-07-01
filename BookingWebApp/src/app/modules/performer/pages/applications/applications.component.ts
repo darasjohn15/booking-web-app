@@ -1,6 +1,7 @@
 import { AuthenticationService } from 'src/app/services/authentication.sevice';
 import { Component } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
+import { ApplicationsService } from 'src/app/services/applications.service';
 
 @Component({
   selector: 'app-applications',
@@ -17,7 +18,7 @@ export class ApplicationsComponent {
   loading = true;
   error = '';
 
-  constructor(private authService: AuthenticationService, private eventsService: EventsService) {}
+  constructor(private authService: AuthenticationService, private applicationsService: ApplicationsService) {}
 
   ngOnInit(): void {
     this.performerId = this.authService.getUserId();
@@ -25,7 +26,7 @@ export class ApplicationsComponent {
   }
 
   loadApplications(): void {
-    this.eventsService.getPerformerApplications(this.performerId).subscribe({
+    this.applicationsService.getApplications({performer_id: this.performerId}).subscribe({
       next: applications => {
         this.applications = applications;
       },
@@ -34,14 +35,24 @@ export class ApplicationsComponent {
   }
 
   approve(applicationId: string) {
-    this.eventsService.approveApplication({ eventID: this.selectedEventId, applicationID: applicationId })
+    let request = {
+      id: applicationId,
+      status: "approved"
+    }
+
+    this.applicationsService.updateApplication(request)
       .subscribe(() => {
         this.updateStatus(applicationId, 'approved');
       });
   }
 
   deny(applicationId: string) {
-    this.eventsService.denyApplication({ eventID: this.selectedEventId, applicationID: applicationId })
+    let request = {
+      id: applicationId,
+      status: "denied"
+    }
+
+    this.applicationsService.updateApplication(request)
       .subscribe(() => {
         this.updateStatus(applicationId, 'denied');
       });
@@ -52,45 +63,5 @@ export class ApplicationsComponent {
     if (app) {
       app.status = newStatus;
     }
-  }
-
-  getTestEvents() {
-    let results = [
-      {
-        id: "1",
-        title: "Test Event 1"
-      }
-    ]
-    return results
-  }
-
-  getTestApplications() {
-    let results = [
-      {
-        id: "1",
-        event_id: "1",
-        event_title: "Test Event 1",
-        performer_id: "2",
-        performer_name: "Test Performer",
-        status: "pending"
-      },
-      {
-        id: "2",
-        event_id: "1",
-        event_title: "Test Event 1",
-        performer_id: "2",
-        performer_name: "Test Performer",
-        status: "approved"
-      },
-      {
-        id: "3",
-        event_id: "1",
-        event_title: "Test Event 1",
-        performer_id: "2",
-        performer_name: "Test Performer",
-        status: "denied"
-      }
-    ]
-    return results
   }
 }

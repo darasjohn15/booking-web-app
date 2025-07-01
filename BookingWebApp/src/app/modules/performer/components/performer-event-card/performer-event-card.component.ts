@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Application } from 'src/app/models/application';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { AuthenticationService } from 'src/app/services/authentication.sevice';
 
 @Component({
@@ -16,12 +17,23 @@ export class PerformerEventCardComponent {
   showApplied: boolean = false;
   performerApplications: Application[] = []
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService,
+              private applicationService: ApplicationsService
+  ) {}
 
   ngOnInit(): void {
-    this.performerApplications = this.event.applications;
     this.performerId = this.authService.getUserId();
-    this.hasPerformerApplied();
+    this.applicationService.getApplications({event_id: this.event.id, performer_id: this.performerId}).subscribe({
+      next: applications => {
+        if(applications.length > 0)
+          this.showApplied = true
+        else
+          this.showApplied = false
+      },
+      error: () => {
+        this.showApplied = false
+      }
+    });
   }
 
   openView(event: any) {
@@ -34,13 +46,5 @@ export class PerformerEventCardComponent {
 
   onEdit() {
     this.editEvent.emit(this.event.id);
-  }
-
-  hasPerformerApplied(): void {
-      this.event.applications.forEach((application: { performer_id: string; }) => {
-        if (application.performer_id == this.performerId) {
-          this.showApplied = true;
-        }
-      });
   }
 }
