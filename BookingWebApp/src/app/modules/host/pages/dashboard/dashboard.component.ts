@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/services/authentication.sevice';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']  // optional, if you’re using a CSS file
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   hostID = '';
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
 
   private loadEvents(): void {
-    this.eventsService.getHostEvents(this.hostID).subscribe({
+    this.eventsService.getEvents({ host_id: this.hostID }).subscribe({
       next: events => {
         this.events = events
       },

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Token } from '../models/token';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 interface DecodedToken {
     user_id: string;

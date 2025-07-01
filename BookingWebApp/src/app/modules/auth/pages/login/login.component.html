@@ -39,6 +39,11 @@
           </button>
         </form>
 
+        <div class="text-center mt-3">
+          <small>Don't have an account?</small>
+          <a routerLink="../register" class="btn btn-link p-0 ml-1">Sign Up</a>
+        </div>
+
         <div *ngIf="getLoginFail()" class="text-danger text-center mt-3">
           Invalid login credentials.
         </div>
