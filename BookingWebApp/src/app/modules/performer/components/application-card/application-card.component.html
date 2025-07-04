@@ -1,0 +1,13 @@
+<div class="application-card">
+  <div class="card-header">
+    <h3>{{ eventDetails?.title || 'Loading...' }}</h3>
+    <span class="status" [ngClass]="application.status.toLowerCase()">
+      {{ application.status }}
+    </span>
+  </div>
+
+  <div class="card-body">
+    <p><strong>Host:</strong> {{ hostDetails?.name || 'Unknown' }}</p>
+    <p><strong>Date:</strong> {{ eventDetails?.date | date: 'mediumDate' }}</p>
+  </div>
+</div>

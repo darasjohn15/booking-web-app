@@ -7,21 +7,6 @@
     </div>
   
     <div class="applications-list">
-      <div *ngFor="let app of applications" class="application-card">
-        <div class="application-details">
-          <p class="application-event">{{ app.event_title }}</p>
-          <p class="application-event">{{ app.event_title }}</p>
-          <span
-            class="application-status"
-            [ngClass]="{
-              'status-pending': app.status === 'pending',
-              'status-approved': app.status === 'approved',
-              'status-denied': app.status === 'denied'
-            }"
-          >
-            {{ app.status | titlecase }}
-          </span>
-        </div>
-      </div>
+      <app-application-card *ngFor="let app of applications" [application]="app"></app-application-card>
     </div>
   </div>

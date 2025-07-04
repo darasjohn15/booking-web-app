@@ -26,7 +26,7 @@ export class EventViewModalComponent {
     this.performerNames = [];
 
     ids.forEach(id => {
-      this.usersService.getUser().subscribe(user => {
+      this.usersService.getUser(id).subscribe(user => {
         if (user?.name) {
           this.performerNames.push(user.name);
         }

@@ -9,6 +9,7 @@ import { PerformerEventCardComponent } from './components/performer-event-card/p
 import { PerformerEventViewModalComponent } from './components/performer-event-view-modal/performer-event-view-modal.component';
 import { PerformerComponent } from './components/performer/performer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApplicationCardComponent } from './components/application-card/application-card.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PerformerNavbarComponent,
     PerformerEventCardComponent,
     PerformerEventViewModalComponent,
-    PerformerComponent
+    PerformerComponent,
+    ApplicationCardComponent
   ],
   imports: [
     CommonModule,

@@ -24,9 +24,9 @@ export class UsersService {
         return localStorage.getItem('userId')!
     }
 
-    getUser(): Observable<User> {
+    getUser(userID: any): Observable<User> {
         console.log("Users Service: Getting User Info - " + this.getUserId())
-        let url = this.baseUrl + "/" + this.getUserId()
+        let url = this.baseUrl + "/" + userID
         return this.http.get<User>(url, { headers: this.getRequestHeaders() });
     }
 
