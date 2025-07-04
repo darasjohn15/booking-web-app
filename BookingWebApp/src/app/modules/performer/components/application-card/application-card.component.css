@@ -1,0 +1,65 @@
+.application-card {
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 0.75rem;
+  border: 1px solid #e0e0e0;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.25rem;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0;
+      color: #222;
+    }
+
+    .status {
+      padding: 0.3rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: capitalize;
+      background-color: #f0f0f0;
+      color: #555;
+
+      &.pending {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      &.approved {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      &.rejected {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+    }
+  }
+
+  .card-body {
+    margin-top: 1rem;
+
+    p {
+      margin: 0.4rem 0;
+      font-size: 0.95rem;
+    }
+
+    strong {
+      color: #555;
+    }
+  }
+}
