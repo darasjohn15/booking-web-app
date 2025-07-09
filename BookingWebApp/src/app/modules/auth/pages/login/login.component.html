@@ -34,14 +34,14 @@
             />
           </div>
 
-          <button type="submit" class="btn btn-primary w-100">
+          <button type="submit" class="btn login-btn w-100">
             Login
           </button>
         </form>
 
         <div class="text-center mt-3">
           <small>Don't have an account? </small>
-          <a routerLink="../register" class="btn btn-link p-0 ml-1">Sign Up</a>
+          <a routerLink="../register" class="login-active-link btn-link p-0 ml-1">Sign Up</a>
         </div>
 
         <div *ngIf="getLoginFail()" class="text-danger text-center mt-3">

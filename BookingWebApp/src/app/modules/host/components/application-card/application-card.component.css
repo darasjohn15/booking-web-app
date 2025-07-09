@@ -1,0 +1,48 @@
+.application-card-container {
+    min-width: 900px;
+    background-color: #FFF3E4;
+    display: flex;
+}
+
+.performer-avatar-container {
+    min-width: 100px;
+    height: 100px;
+}
+
+.img-performer-avatar{
+    height: 100%;
+    width: 100%;
+}
+
+.performer-name-container {
+    min-width: 300px;
+    max-height: 50px;
+    margin-left: 20px;
+    justify-content: center;
+}
+
+.application-actions {
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+    min-width: 300px;
+    margin-left: 600px;
+    padding: 10px;
+}
+
+.approve-btn {
+    display: table-cell;
+    min-width: 130px;
+    height: 50px;
+    background-color: #8C9E57;
+    color: #FFF3E4;
+    margin-right: 10px;
+}
+
+.deny-btn {
+    display: table-cell;
+    width: 100%;
+    height: 50px;
+    background-color: #C0392B;
+    color: #fff;
+}

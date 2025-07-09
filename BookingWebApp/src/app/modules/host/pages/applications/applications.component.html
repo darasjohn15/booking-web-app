@@ -23,7 +23,8 @@
 
   <div class="applications-list">
     <div *ngFor="let app of applications" class="application-card">
-      <div class="application-details">
+      <app-application-card *ngFor="let application of applications" [application]="application"></app-application-card>
+      <!-- <div class="application-details">
         <p class="application-performer">{{ app.performer_name }}</p>
         <p class="application-event">Applied for: <span>{{ app.event_title }}</span></p>
         <span
@@ -40,7 +41,7 @@
       <div *ngIf="app.status === 'pending'" class="application-actions">
         <button class="btn-approve" (click)="approve(app.id)">Approve</button>
         <button class="btn-deny" (click)="deny(app.id)">Deny</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

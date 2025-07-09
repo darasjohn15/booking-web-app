@@ -12,10 +12,19 @@
   }
   
   .modal-content {
-    background: white;
+    background: #FFF3E4;
     border-radius: 1rem;
     padding: 2rem;
     max-width: 500px;
     width: 100%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-close-modal {
+    background-color: #D96C3B;
+    color: #FFF;
+  }
+
+  .btn-close-model:hover {
+    background-color: #C5562A;
   }

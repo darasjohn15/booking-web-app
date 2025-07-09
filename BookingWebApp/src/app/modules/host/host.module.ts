@@ -12,6 +12,7 @@ import { HostComponent } from './components/host/host.component';
 import { EventViewModalComponent } from './components/event-view-modal/event-view-modal.component';
 import { EditEventComponent } from './pages/edit-event/edit-event.component';
 import { FormsModule } from '@angular/forms';
+import { ApplicationCardComponent } from './components/application-card/application-card.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     ApplicationsComponent,
     HostNavbarComponent,
     EventCardComponent,
+    ApplicationCardComponent,
     EventsTableComponent,
     HostComponent,
     EventViewModalComponent,

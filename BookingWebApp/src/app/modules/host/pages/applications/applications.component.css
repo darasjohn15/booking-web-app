@@ -1,6 +1,6 @@
 .applications-container {
   padding: 2rem;
-  background-color: #f9fafb;
+  background-color: #FFF;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   overflow: auto; 
@@ -31,9 +31,9 @@
 }
 
 .event-tabs button.active {
-  background-color: #3b82f6;
+  background-color: #D96C3B;
   color: #ffffff;
-  border-color: #3b82f6;
+  border-color: #D96C3B;
 }
 
 .event-tabs button.inactive {
@@ -61,7 +61,7 @@
 }
 
 .application-card {
-  background-color: #ffffff;
+  background-color: #FFF3E4;
   border: 1px solid #e5e7eb;
   border-radius: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);

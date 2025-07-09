@@ -7,26 +7,16 @@
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-3">
-          <input
-            type="text"
-            placeholder="Name"
-            class="form-control"
-            formControlName="name"
-            required
-          />
+          <label for="name">Name</label>
+          <input type="text"  class="form-control" formControlName="name" required />
             <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger">
                 Name is required.
             </div>
         </div>
 
         <div class="form-group mb-3">
-          <input
-            type="email"
-            placeholder="Email"
-            class="form-control"
-            formControlName="email"
-            required
-          />
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email" required />
             <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors">
                 <small *ngIf="emailRequired" class="text-danger">Email is required.</small>
                 <small *ngIf="emailInvalid && emailFormatError" class="text-danger">Please enter a valid email.</small>
@@ -34,26 +24,16 @@
         </div>
 
         <div class="form-group mb-3">
-          <input
-            type="password"
-            placeholder="Password"
-            class="form-control"
-            formControlName="password"
-            required
-          />
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password" required />
             <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors">
                 <small *ngIf="passwordRequired" class="text-danger">Password is required.</small>
             </div>
         </div>
 
         <div class="form-group mb-3">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            class="form-control"
-            formControlName="confirmPassword"
-            required
-          />
+           <label for="confirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" formControlName="confirmPassword" required />
             <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.errors">
                 <small *ngIf="confirmPasswordRequired" class="text-danger">
                     Confirm Password is required.
@@ -88,7 +68,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-success w-100">
+        <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">
           Sign Up
         </button>
       </form>
