@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { EventsService } from 'src/app/services/events.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ApplicationsComponent {
     loading = true;
     error = '';
 
-  constructor(private eventsService: EventsService) {}
+  constructor(private eventsService: EventsService,
+              private applicationsService: ApplicationsService) {}
 
   ngOnInit(): void {
     this.loadPage()
@@ -43,8 +45,7 @@ export class ApplicationsComponent {
   }
 
   loadApplications(): void {
-    // Replace this with an actual API call to fetch applications for venue
-    this.eventsService.getApplications(this.selectedEventId!).subscribe({
+    this.applicationsService.getApplications({ event_id: this.selectedEventId }).subscribe({
       next: applications => {
         this.applications = applications.filter(app => app.status === 'pending');
       },
@@ -56,14 +57,14 @@ export class ApplicationsComponent {
   }
 
   approve(applicationId: string) {
-    this.eventsService.approveApplication({ eventID: this.selectedEventId, applicationID: applicationId })
+    this.applicationsService.updateApplication({ status: 'approved', id: applicationId })
       .subscribe(() => {
         this.updateStatus(applicationId, 'approved');
       });
   }
 
   deny(applicationId: string) {
-    this.eventsService.denyApplication({ eventID: this.selectedEventId, applicationID: applicationId })
+    this.applicationsService.updateApplication({ status: 'denied', id: applicationId })
       .subscribe(() => {
         this.updateStatus(applicationId, 'denied');
       });

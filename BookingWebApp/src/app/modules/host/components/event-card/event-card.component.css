@@ -1,5 +1,5 @@
 .event-card {
-  background-color: #ffffff;
+  background-color: #FFF3E4;
   border-radius: 1rem;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -37,6 +37,7 @@
 }
 
 .event-actions {
+  width: 100%;
   display: flex;
   gap: 0.5rem;
   margin-top: auto;
@@ -53,21 +54,27 @@
 }
 
 .btn-view {
-  background-color: #3b82f6;
-  color: white;
+  display: table-cell;
+  min-width: 120px;
+  background-color: transparent;
+  border: 1px solid #D96C3B;
+  color: #D96C3B;
 }
 
 .btn-view:hover {
-  background-color: #2563eb;
+  background-color: #D96C3B;
+  color: #FFF;
 }
 
 .btn-edit {
-  background-color: #f59e0b;
+  display: table-cell;
+  width: 100%;
+  background-color: #D96C3B;
   color: white;
 }
 
 .btn-edit:hover {
-  background-color: #d97706;
+  background-color: #C5562A;
 }
 
 /* Optional: Responsive fallback */

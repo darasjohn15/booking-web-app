@@ -1,19 +1,17 @@
 .login-page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f3f4f6;
-    padding: 2rem;
+    background-color: #ffffff;
   }
   
   .login-container {
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
+    margin: 40px auto;
   }
   
   .login-card {
-    background-color: #ffffff;
+    background-color: #FFF3E4;
     border-radius: 0.75rem;
     padding: 2rem 2rem 1rem;
   }
@@ -30,4 +28,13 @@
   
   .text-muted {
     color: #6b7280;
+  }
+
+  .login-btn {
+    background-color: #D96C3B;
+    color: #ffffff;
+  }
+
+  .login-active-link {
+    color: #D96C3B;
   }

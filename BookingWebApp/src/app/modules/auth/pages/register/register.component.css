@@ -1,19 +1,17 @@
 .register-page {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f3f4f6; /* Tailwind's gray-100 */
-  padding: 2rem;
+  background-color: #FFF;
 }
 
 .register-container {
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
+  margin: 40px auto;
 }
 
 .register-card {
-  background-color: #ffffff;
+  background-color: #FFF3E4;
   border-radius: 0.75rem;
   padding: 2rem 2rem 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -22,7 +20,7 @@
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #111827; /* Tailwind's gray-900 */
+  color: #111827;
   margin-bottom: 1rem;
 }
 
@@ -30,13 +28,13 @@ h2 {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
-  border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+  border: 1px solid #d1d5db;
   font-size: 1rem;
   outline: none;
 }
 
 .form-control:focus {
-  border-color: #3b82f6; /* Tailwind's blue-500 */
+  border-color: #FF9F1C;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
@@ -47,11 +45,11 @@ h2 {
 .form-check-label {
   margin-left: 0.25rem;
   font-weight: 500;
-  color: #374151; /* Tailwind's gray-700 */
+  color: #374151; 
 }
 
 .btn-success {
-  background-color: #10b981; /* Tailwind's green-500 */
+  background-color: #D96C3B;
   color: white;
   border: none;
   padding: 0.5rem;
@@ -63,11 +61,17 @@ h2 {
 }
 
 .btn-success:hover {
-  background-color: #059669; /* Tailwind's green-600 */
+  background-color: #C5562A; 
 }
 
 .register-footer {
   margin-top: 1rem;
   font-size: 0.875rem;
-  color: #6b7280; /* Tailwind's gray-500 */
+  color: #6b7280; 
+}
+
+.register-footer a {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #D96C3B; 
 }

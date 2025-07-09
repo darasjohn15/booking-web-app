@@ -4,7 +4,7 @@
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    background-color: #ffffff;
+    background-color: #FFF3E4;
   }
   
   .create-event-container h2 {
@@ -41,7 +41,7 @@
   
   input:focus,
   textarea:focus {
-    border-color: #007bff;
+    border-color: #FF9F1C;
     outline: none;
   }
   
@@ -52,7 +52,7 @@
   
   .submit-button {
     padding: 12px 20px;
-    background-color: #007bff;
+    background-color: #D96C3B;
     color: white;
     font-weight: 600;
     border: none;
@@ -63,10 +63,11 @@
   }
   
   .submit-button:disabled {
-    background-color: #9bbbe2;
+    background-color: #E9C6B3;
     cursor: not-allowed;
+    border: 0.5px solid #D1B2A2;
   }
   
   .submit-button:hover:not(:disabled) {
-    background-color: #0056b3;
+    background-color: #C5562A;
   }

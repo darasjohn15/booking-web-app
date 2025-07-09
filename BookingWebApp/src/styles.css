@@ -4,18 +4,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
   }
 
 html {
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
 } 
 
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
+    background-color: #FFF;
     color: #212529;
+    overflow: hidden;
 }
 
 a {
