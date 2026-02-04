@@ -5,6 +5,7 @@ import { Token } from '../models/token';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 interface DecodedToken {
     user_id: string;
@@ -19,8 +20,7 @@ export class AuthenticationService {
     private decodedToken: DecodedToken | null = null;
     httpOptions = {
         headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Content-Type': 'application/json'
         })
     }
     
@@ -88,19 +88,16 @@ export class AuthenticationService {
     }
 
     login({ email, password }: any): Observable<any> {
-        let url = "https://booking-app-apis.onrender.com/login"
+        const url = `${environment.apiBaseUrl}/login`;
         return this.http.post<Token>(url, { email, password }).pipe(
             tap(response => {
                 const token = response.token!;
-                localStorage.setItem('token', token);
 
                 console.log('Authentication Service: ' + token)
                 
                 this.setToken(token)
                 this.setUserId(token)
                 this.setRole(token)
-                
-                return token
             })
         );
     }
