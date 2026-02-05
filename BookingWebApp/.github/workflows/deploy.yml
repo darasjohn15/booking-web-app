@@ -1,52 +1,12 @@
-name: Deploy Angular to S3
+name: Workflow Smoke Test
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
-  workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
 
 jobs:
-  build-and-deploy:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      # Optional (recommended): uncomment if these scripts exist
-      # - name: Lint
-      #   run: npm run lint
-      # - name: Test
-      #   run: npm test -- --watch=false --browsers=ChromeHeadless
-
-      - name: Build (production)
-        run: npm run build -- --configuration production
-
-      - name: Configure AWS credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Deploy to S3
-        env:
-          BUCKET: ${{ secrets.S3_BUCKET }}
-        run: |
-          # Angular typically outputs dist/<project-name>
-          DIST_DIR=$(ls -d dist/* | head -n 1)
-
-          echo "Deploying from: $DIST_DIR"
-          aws s3 sync "$DIST_DIR" "s3://$BUCKET" --delete --only-show-errors
+      - run: echo "GitHub Actions is alive ✅"
