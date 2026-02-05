@@ -22,17 +22,22 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: BookingWebApp/package-lock.json
 
       - name: Install dependencies
+        working-directory: BookingWebApp
         run: npm ci
 
-      # Optional (recommended): uncomment if these scripts exist
+      # Optional gates (uncomment if you have them)
       # - name: Lint
+      #   working-directory: BookingWebApp
       #   run: npm run lint
       # - name: Test
+      #   working-directory: BookingWebApp
       #   run: npm test -- --watch=false --browsers=ChromeHeadless
 
       - name: Build (production)
+        working-directory: BookingWebApp
         run: npm run build -- --configuration production
 
       - name: Configure AWS credentials (OIDC)
@@ -45,8 +50,6 @@ jobs:
         env:
           BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
-          # Angular typically outputs dist/<project-name>
-          DIST_DIR=$(ls -d dist/* | head -n 1)
-
+          DIST_DIR=$(ls -d BookingWebApp/dist/* | head -n 1)
           echo "Deploying from: $DIST_DIR"
           aws s3 sync "$DIST_DIR" "s3://$BUCKET" --delete --only-show-errors
