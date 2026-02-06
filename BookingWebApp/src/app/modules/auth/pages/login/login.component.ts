@@ -1,55 +1,64 @@
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.sevice';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css'], // keep as-is (or switch to .scss if you want)
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
+  // UI state
+  showPassword = false;
+  loginFail = false;
 
-  loginFail: boolean = false;
+  // Form
+  loginForm = new FormGroup({
+    email: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    password: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+  });
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
-      let role = this.auth.getRole();
-      if (role === 'host')
-        this.router.navigate(['/host']);
-      else
-        this.router.navigate(['/performer']);
-    }
-  }
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-        console.log(this.loginForm.value)
-      this.auth.login(this.loginForm.value).subscribe(
-        (result) => {
-          console.log(result);
-          const role = this.auth.getRole();
-          
-          if (role === 'host') {
-            this.router.navigate(['/host']);
-          }
-          else {
-            this.router.navigate(['/performer']);
-          }
-        },
-        (err: Error) => {
-          this.loginFail = true
-        }
-      );
+      const role = this.auth.getRole();
+      this.router.navigate([role === 'host' ? '/host' : '/performer']);
     }
   }
 
-  getLoginFail(): boolean {
-    return this.loginFail
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  onSubmit(): void {
+    this.loginFail = false;
+
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    // NOTE: If your service expects a plain object, this is perfect:
+    const payload = this.loginForm.getRawValue();
+
+    this.auth.login(payload).subscribe({
+      next: () => {
+        const role = this.auth.getRole();
+        this.router.navigate([role === 'host' ? '/host' : '/performer']);
+      },
+      error: () => {
+        this.loginFail = true;
+      },
+    });
+  }
+
+  // Nice-to-haves for template
+  get emailCtrl() {
+    return this.loginForm.controls.email;
+  }
+  get passwordCtrl() {
+    return this.loginForm.controls.password;
   }
 }

@@ -1,58 +1,66 @@
-<app-navbar></app-navbar>
+<div class="page">
+  <section class="hero" aria-hidden="true">
+    <div class="brand">
+      <div class="brand__mark"></div>
+      <div class="brand__name">Book-A-Gig</div>
+    </div>
 
-<div class="login-page">
-  <div class="login-container">
-    <div class="login-card shadow">
-      <div class="login-body">
-        <h2 class="text-center mb-2">Welcome</h2>
-        <p class="text-muted text-center mb-4">
-          Please enter your login details
-        </p>
+    <img class="hero__art" src="assets/illustrations/book-a-gig-login.png" alt="" />
+  </section>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group mb-3">
-            <input
-              type="text"
-              id="email"
-              placeholder="Email"
-              class="form-control"
-              formControlName="email"
-              name="email"
-              required
-            />
-          </div>
+  <section class="panel">
+    <div class="card">
+      <h1 class="title">Backstage access</h1>
+      <p class="subtitle">Book shows. Find stages. Get paid.</p>
 
-          <div class="form-group mb-4">
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              class="form-control"
-              formControlName="password"
-              name="password"
-              required
-            />
-          </div>
-
-          <button type="submit" class="btn login-btn w-100">
-            Login
-          </button>
-        </form>
-
-        <div class="text-center mt-3">
-          <small>Don't have an account? </small>
-          <a routerLink="../register" class="login-active-link btn-link p-0 ml-1">Sign Up</a>
-        </div>
-
-        <div *ngIf="getLoginFail()" class="text-danger text-center mt-3">
-          Invalid login credentials.
-        </div>
+      <!-- error banner -->
+      <div class="banner" *ngIf="loginFail">
+        Wrong email or password. Try again.
       </div>
 
-      <!-- Hiding the Forgot Password Button until the feature is complete. -->
-      <!-- <div class="login-footer text-right mt-3">
-        <small><a routerLink="../forgot-password">Forgot Password?</a></small>
-      </div> -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <label class="field">
+          <span class="field__icon" aria-hidden="true">✉️</span>
+          <input
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="Email address"
+            formControlName="email"
+          />
+        </label>
+
+        <p class="error" *ngIf="emailCtrl.touched && emailCtrl.invalid">
+          Please enter a valid email.
+        </p>
+
+        <label class="field">
+          <span class="field__icon" aria-hidden="true">🔒</span>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            autocomplete="current-password"
+            placeholder="Password"
+            formControlName="password"
+          />
+
+          <button type="button" class="field__action" (click)="togglePassword()">
+            {{ showPassword ? 'Hide' : 'Show' }}
+          </button>
+        </label>
+
+        <p class="error" *ngIf="passwordCtrl.touched && passwordCtrl.invalid">
+          Password must be at least 8 characters.
+        </p>
+
+        <a class="link subtle" routerLink="/auth/forgot-password">Forgot password?</a>
+
+        <button class="btn" type="submit">Sign in</button>
+
+        <div class="footer">
+          <span class="subtle">New here?</span>
+          <a class="link" routerLink="register">Join the lineup</a>
+        </div>
+      </form>
     </div>
-  </div>
+  </section>
 </div>

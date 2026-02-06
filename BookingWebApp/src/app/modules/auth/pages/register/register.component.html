@@ -1,82 +1,103 @@
-<app-navbar></app-navbar>
+<div class="auth-page">
+  <div class="auth-bg"></div>
 
-<div class="register-page">
-  <div class="register-container">
-    <div class="register-card shadow">
-      <h2 class="text-center mb-4">Create an Account</h2>
+  <div class="auth-shell">
+    <div class="brand">Book-A-Gig</div>
 
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group mb-3">
-          <label for="name">Name</label>
-          <input type="text"  class="form-control" formControlName="name" required />
-            <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger">
-                Name is required.
-            </div>
+    <div class="auth-card">
+      <h1 class="title">Sign Up</h1>
+      <p class="subtitle">Join Book-A-Gig today! Create your account below.</p>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Name -->
+        <div class="field">
+          <input
+            type="text"
+            class="input"
+            placeholder="Name"
+            formControlName="name"
+            autocomplete="name"
+          />
+          <small class="error" *ngIf="nameRequired">Name is required.</small>
         </div>
 
-        <div class="form-group mb-3">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" formControlName="email" required />
-            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors">
-                <small *ngIf="emailRequired" class="text-danger">Email is required.</small>
-                <small *ngIf="emailInvalid && emailFormatError" class="text-danger">Please enter a valid email.</small>
-            </div>
+        <!-- Email -->
+        <div class="field">
+          <input
+            type="email"
+            class="input"
+            placeholder="Email"
+            formControlName="email"
+            autocomplete="email"
+          />
+          <small class="error" *ngIf="emailRequired">Email is required.</small>
+          <small class="error" *ngIf="emailFormatError && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+            Enter a valid email address.
+          </small>
         </div>
 
-        <div class="form-group mb-3">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" formControlName="password" required />
-            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors">
-                <small *ngIf="passwordRequired" class="text-danger">Password is required.</small>
-            </div>
+        <!-- Password -->
+        <div class="field">
+          <input
+            type="password"
+            class="input"
+            placeholder="Password"
+            formControlName="password"
+            autocomplete="new-password"
+          />
+          <small class="error" *ngIf="passwordRequired">Password is required.</small>
         </div>
 
-        <div class="form-group mb-3">
-           <label for="confirmPassword">Confirm Password</label>
-          <input type="password" class="form-control" formControlName="confirmPassword" required />
-            <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.errors">
-                <small *ngIf="confirmPasswordRequired" class="text-danger">
-                    Confirm Password is required.
-                </small>
-                <small *ngIf="passwordsMismatch" class="text-danger">
-                    Passwords do not match.
-                </small>
-            </div>
+        <!-- Confirm Password -->
+        <div class="field">
+          <input
+            type="password"
+            class="input"
+            placeholder="Confirm Password"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+          />
+          <small class="error" *ngIf="confirmPasswordRequired">Confirm your password.</small>
+          <small class="error" *ngIf="passwordsMismatch">Passwords do not match.</small>
         </div>
 
-        <div class="form-group mb-4">
-          <label class="d-block mb-2">Role:</label>
-          <div class="form-check form-check-inline">
-            <input
-              type="radio"
-              id="host"
-              value="host"
-              formControlName="role"
-              class="form-check-input"
-            />
-            <label for="host" class="form-check-label">Host</label>
+        <!-- Role Selector -->
+        <div class="role-block">
+          <div class="role-label">I'm a</div>
+
+          <div class="role-toggle" role="tablist" aria-label="Role selector">
+            <button
+              type="button"
+              class="role-pill"
+              [class.active]="registerForm.value.role === 'host'"
+              (click)="setRole('host')"
+            >
+              <span class="pill-icon">📅</span>
+              Host
+            </button>
+
+            <button
+              type="button"
+              class="role-pill"
+              [class.active]="registerForm.value.role === 'performer'"
+              (click)="setRole('performer')"
+            >
+              <span class="pill-icon">🎤</span>
+              Performer
+            </button>
           </div>
-          <div class="form-check form-check-inline">
-            <input
-              type="radio"
-              id="performer"
-              value="performer"
-              formControlName="role"
-              class="form-check-input"
-            />
-            <label for="performer" class="form-check-label">Performer</label>
-          </div>
         </div>
 
-        <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">
+        <!-- CTA -->
+        <button class="cta" type="submit" [disabled]="registerForm.invalid">
           Sign Up
         </button>
-      </form>
 
-      <div class="register-footer text-center mt-3">
-        <small>Already have an account? <a routerLink="/login">Log In</a></small>
-      </div>
+        <div class="footer">
+          <span>Already have an account?</span>
+          <a routerLink="/login">Log in</a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-

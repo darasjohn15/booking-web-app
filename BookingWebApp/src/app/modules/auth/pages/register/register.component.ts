@@ -87,6 +87,17 @@ get passwordsMismatch(): boolean {
     const control = this.registerForm.get('email');
     return !!control?.errors?.['email'];
   }
+
+  setRole(role: 'host' | 'performer'): void {
+    this.registerForm.patchValue({ role });
+    this.registerForm.get('role')?.markAsDirty();
+    this.registerForm.get('role')?.markAsTouched();
+  }
+
+  get nameRequired(): boolean {
+    const control = this.registerForm.get('name');
+    return !!control?.errors?.['required'] && (control.dirty || control.touched);
+  }
 }
 
 export const passwordsMatchValidator: ValidatorFn = (form: AbstractControl): ValidationErrors | null => {

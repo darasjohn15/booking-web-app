@@ -7,11 +7,11 @@ import { AuthComponent } from './components/auth/auth.component';
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent, 
+    component: AuthComponent,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent}
+      { path: '', component: LoginComponent },       // /login
+      { path: 'register', component: RegisterComponent } // /login/register
+      // { path: 'forgot-password', component: ForgotPasswordComponent } // /login/forgot-password
     ]
   }
 ];
