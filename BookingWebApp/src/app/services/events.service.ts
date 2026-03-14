@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Event } from '../models/event';
 import { ResponseMessage } from '../models/response-message';
 import { Application } from '../models/application';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class EventsService {
     
-    private baseUrl: string = "https://booking-app-apis.onrender.com/events"
+    private baseUrl: string = `${environment.apiBaseUrl}/events`;
 
     constructor(private http: HttpClient) { }
 

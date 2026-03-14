@@ -3,12 +3,13 @@ import { Injectable } from "@angular/core";
 import { ResponseMessage } from "../models/response-message";
 import { Observable } from "rxjs";
 import { Application } from "../models/application";
+import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApplicationsService {
-    private baseUrl: string = "https://booking-app-apis.onrender.com/applications"
+    private baseUrl: string = `${environment.apiBaseUrl}/applications`;
     
         constructor(private http: HttpClient) { }
     
