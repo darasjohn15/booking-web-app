@@ -1,7 +1,15 @@
 .application-card-container {
-    min-width: 900px;
-    background-color: #FFF3E4;
+    min-width: 60%;
+    background-color: #FFFFFF;
     display: flex;
+    padding: 20px 20px;
+    box-shadow: 0 10px 24px rgba(80, 70, 140, 0.08);
+}
+
+/* subtle hover lift */
+.application-card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(80, 70, 140, 0.12);
 }
 
 .performer-avatar-container {
@@ -34,15 +42,17 @@
     display: table-cell;
     min-width: 130px;
     height: 50px;
-    background-color: #8C9E57;
-    color: #FFF3E4;
+    background-color: #4fb334;
+    color: #FFF;
     margin-right: 10px;
+    margin-top: 10px;
 }
 
 .deny-btn {
     display: table-cell;
     width: 100%;
     height: 50px;
-    background-color: #C0392B;
+    background-color: #d23128;
     color: #fff;
+    margin-top: 10px;
 }

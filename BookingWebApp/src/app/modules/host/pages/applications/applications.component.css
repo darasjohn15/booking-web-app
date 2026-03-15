@@ -1,16 +1,49 @@
-.applications-container {
-  padding: 2rem;
-  background-color: #FFF;
+:host {
+  display: block;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  overflow: auto; 
+  background: #f3f1fb;
+}
+
+.applications-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 3rem 1.25rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+/* Title area */
+.applications-title,
+.applications-subtitle {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .applications-title {
+   margin: 0;
   font-size: 2rem;
-  font-weight: 700;
-  color: #1f2937;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: #7264ad;
+}
+
+.applications-subtitle {
+  margin-top: 0.5rem;
   margin-bottom: 2rem;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 300;
+  color: #7f75ad;
+}
+
+.applications-content {
+  margin-top: 10px;
+  min-height: 100%;
 }
 
 /* Tab Buttons */
@@ -19,6 +52,8 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
+  justify-content: center;
+  text-align: center;
 }
 
 .event-tabs button {
@@ -31,9 +66,9 @@
 }
 
 .event-tabs button.active {
-  background-color: #D96C3B;
+  background-color: #ff6f47;
   color: #ffffff;
-  border-color: #D96C3B;
+  border-color: #ff6f47;
 }
 
 .event-tabs button.inactive {

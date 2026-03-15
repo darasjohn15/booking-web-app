@@ -1,9 +1,38 @@
 <app-host-navbar></app-host-navbar>
 <div class="dashboard-container">
   <div class="page-title">
-    <h3>Events:</h3>
-  </div>
-  <div class="event-grid">
+  <p>My Events</p>
+</div>
+<div class="page-subtitle">
+  <p>Manage and track your gigs</p>
+</div>
+
+  <div class="events-content">
+    <div class="event-grid">
     <app-event-card *ngFor="let event of events" [event]="event" (editEvent)="onEditEvent($event)"></app-event-card>
+  </div>
+  <div class="pagination-container" *ngIf="pagination && pagination.totalPages > 1">
+    <button
+      class="pagination-btn"
+      (click)="prevPage()"
+      [disabled]="pagination.page === 1">
+      Previous
+    </button>
+
+    <button
+      class="pagination-btn page-number"
+      *ngFor="let page of pageNumbers"
+      (click)="goToPage(page)"
+      [class.active]="pagination.page === page">
+      {{ page }}
+    </button>
+
+    <button
+      class="pagination-btn"
+      (click)="nextPage()"
+      [disabled]="pagination.page === pagination.totalPages">
+      Next
+    </button>
+  </div>
   </div>
 </div>

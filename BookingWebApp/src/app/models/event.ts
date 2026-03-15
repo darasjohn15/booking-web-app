@@ -7,4 +7,5 @@ export class Event {
     performers?: string[];
     applications?: string[];
     active?: boolean;
+    total_count?: number;
 }

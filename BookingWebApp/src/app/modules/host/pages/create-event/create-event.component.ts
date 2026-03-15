@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.sevice';
 import { EventsService } from 'src/app/services/events.service';
+import { VenuesService } from 'src/app/services/venues.service';
 
 @Component({
   selector: 'app-create-event',
@@ -19,6 +20,7 @@ export class CreateEventComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private eventsService: EventsService,
+    private venuesService: VenuesService,
     private router: Router
   ) {
   }
@@ -35,28 +37,14 @@ export class CreateEventComponent implements OnInit {
   }
 
   loadVenues(): void {
-    this.venues = [
-      {
-        id: "1",
-        name: "Venue 1"
+    this.venuesService.getVenues().subscribe({
+      next: venues => {
+        this.venues = venues
       },
-      {
-        id: "2",
-        name: "Venue 2"
-      },
-      {
-        id: "3",
-        name: "Venue 3"
-      },
-      {
-        id: "4",
-        name: "Venue 4"
-      },
-      {
-        id: "5",
-        name: "Venue 5"
+      error: () => {
+        
       }
-    ]
+    })
   }
 
   onSubmit(): void {
