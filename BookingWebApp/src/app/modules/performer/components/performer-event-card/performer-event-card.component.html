@@ -1,20 +1,21 @@
 <div class="event-card">
-    <h3 class="event-title">{{ event.title }}</h3>
-    <p class="event-date">{{ event.date | date: 'mediumDate' }}</p>
-    <p class="event-location">{{ event.location }}</p>
-    <p class="event-description">{{ event.description }}</p>
-    <!-- <span class="event-status" [ngClass]="event.status.toLowerCase()">{{ event.status }}</span> -->
-  
+  <h3 class="event-title">{{ event.title }}</h3>
+  <p class="event-date">{{ event.date | date: 'mediumDate' }}</p>
+  <p class="event-location">{{ event.location }}</p>
+  <p class="event-description">{{ event.description }}</p>
+
+  <div class="event-footer">
     <div class="event-actions">
       <button class="btn btn-view" (click)="openView(event)">View</button>
     </div>
 
-    <div *ngIf="showApplied" class="event-applied-status">
-        <p>Applied</p>
-    </div>
+    <span *ngIf="showApplied" class="status-badge applied">
+      Applied
+    </span>
   </div>
-  
-  <app-performer-event-view-modal
+</div>
+
+<app-performer-event-view-modal
   *ngIf="selectedEvent"
   [event]="selectedEvent"
   (close)="closeModal()"

@@ -33,11 +33,11 @@ export class DashboardComponent implements OnInit {
   }
 
   get pageNumbers(): number[] {
-  return Array.from(
-    { length: this.pagination.totalPages },
-    (_, i) => i + 1
-  );
-}
+    return Array.from(
+      { length: this.pagination.totalPages },
+      (_, i) => i + 1
+    );
+  }
 
 goToPage(page: number): void {
   if (page !== this.pagination.page) {
@@ -77,7 +77,6 @@ prevPage(): void {
 
   handleViewEvent(event: any) {
     console.log('View clicked for:', event);
-    // You could route to a detail view or open a modal here
   }
 
   onEditEvent(eventId: string) {
