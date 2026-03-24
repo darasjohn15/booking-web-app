@@ -16,6 +16,19 @@ describe('EventCardComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(EventCardComponent);
+  const component = fixture.componentInstance;
+
+  component.event = {
+    id: 1,
+    title: 'Open Mic Night',
+    description: 'A fun event',
+    date: '2026-03-20',
+    location: 'Atlanta'
+  } as any;
+
+  fixture.detectChanges();
+
+  expect(component).toBeTruthy();
   });
 });

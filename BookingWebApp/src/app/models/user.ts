@@ -1,5 +1,3 @@
-import { Message } from "./message";
-
 export class User {
     id?: string;
     name?: string;

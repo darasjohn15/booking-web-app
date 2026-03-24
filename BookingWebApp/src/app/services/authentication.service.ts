@@ -1,4 +1,4 @@
-import { JWTHelper } from './../helpers/jwt.helper';
+import { JWTHelper } from '../helpers/jwt.helper';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Token } from '../models/token';

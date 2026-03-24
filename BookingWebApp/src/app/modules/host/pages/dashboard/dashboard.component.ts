@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from 'src/app/models/event';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.sevice';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-dashboard',

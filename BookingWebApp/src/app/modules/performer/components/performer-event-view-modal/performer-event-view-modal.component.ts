@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthenticationService } from 'src/app/services/authentication.sevice';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { EventsService } from 'src/app/services/events.service';
 
 @Component({

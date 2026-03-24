@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/authentication.sevice';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UsersService } from 'src/app/services/user.service';
 
 @Component({

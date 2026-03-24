@@ -8,6 +8,7 @@ import { authGuard } from '../../guards/auth/auth.guard';
 import { roleGuard } from '../../guards/role/role.guard';
 import { HostComponent } from './components/host/host.component';
 import { EditEventComponent } from './pages/edit-event/edit-event.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'create-event', component: CreateEventComponent },
       { path: 'applications', component: ApplicationsComponent },
-      { path: 'edit-event/:id', component: EditEventComponent }
+      { path: 'edit-event/:id', component: EditEventComponent },
+      { path: 'settings', component: SettingsComponent }
     ]
   }
 ];

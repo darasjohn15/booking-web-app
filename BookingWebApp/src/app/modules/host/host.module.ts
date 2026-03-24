@@ -13,6 +13,7 @@ import { EventViewModalComponent } from './components/event-view-modal/event-vie
 import { EditEventComponent } from './pages/edit-event/edit-event.component';
 import { FormsModule } from '@angular/forms';
 import { ApplicationCardComponent } from './components/application-card/application-card.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ApplicationCardComponent } from './components/application-card/applicat
     EventsTableComponent,
     HostComponent,
     EventViewModalComponent,
-    EditEventComponent
+    EditEventComponent,
+    SettingsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,108 @@
+<app-host-navbar></app-host-navbar>
+<div class="settings-page">
+  <!-- Page Content -->
+  <main class="settings-content">
+    <div class="settings-card">
+      <div class="page-header">
+        <h1>Account Settings</h1>
+        <p>Manage your profile, security, and account preferences</p>
+      </div>
+
+      <!-- Profile Section -->
+      <section class="settings-section">
+        <h2>Profile Information</h2>
+
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" formControlName="name" placeholder="Enter your name" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" placeholder="Enter your email" />
+          </div>
+
+          <div class="section-actions">
+            <button class="primary-btn" type="submit" [disabled]="isSavingProfile">
+              {{ isSavingProfile ? 'Saving...' : 'Save Changes' }}
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Password Section -->
+      <section class="settings-section">
+        <h2>Change Password</h2>
+
+        <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input
+              id="current-password"
+              type="password"
+              formControlName="currentPassword"
+              placeholder="Enter current password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input
+              id="new-password"
+              type="password"
+              formControlName="newPassword"
+              placeholder="Enter new password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input
+              id="confirm-password"
+              type="password"
+              formControlName="confirmPassword"
+              placeholder="Confirm new password"
+            />
+          </div>
+
+          <p class="helper-text">Password should be at least 8 characters long.</p>
+
+          <p
+            class="helper-text error-text"
+            *ngIf="passwordForm.errors?.['passwordMismatch'] && passwordForm.touched"
+          >
+            Passwords do not match.
+          </p>
+
+          <div class="section-actions">
+            <button class="primary-btn" type="submit" [disabled]="isSavingPassword">
+              {{ isSavingPassword ? 'Updating...' : 'Update Password' }}
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Danger Zone -->
+      <section class="settings-section danger-zone">
+        <h2>Danger Zone</h2>
+
+        <div class="danger-box">
+          <div class="danger-copy">
+            <h3>Deactivate Account</h3>
+            <p>
+              Temporarily disable your account. Your profile and activity will no longer be visible
+              until you reactivate.
+            </p>
+          </div>
+
+          <div class="section-actions">
+            <button class="danger-btn" type="button" [disabled]="isDeactivating" (click)="deactivateAccount()">
+              {{ isDeactivating ? 'Deactivating...' : 'Deactivate Account' }}
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

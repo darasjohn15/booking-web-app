@@ -1,4 +1,4 @@
-import { AuthenticationService } from 'src/app/services/authentication.sevice';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Component } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { ApplicationsService } from 'src/app/services/applications.service';

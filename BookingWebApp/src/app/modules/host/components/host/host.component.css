@@ -1,4 +1,10 @@
 html, body {
-    height: 100%;
-    overflow: auto;
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+body {
+  min-height: 100vh;
+}

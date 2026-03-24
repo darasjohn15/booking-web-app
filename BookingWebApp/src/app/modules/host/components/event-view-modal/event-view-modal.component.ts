@@ -10,7 +10,6 @@ export class EventViewModalComponent {
   @Input() event: any;
   @Output() close = new EventEmitter<void>();
 
-  performers: any[] = []
   performerNames: any[] = []
 
   constructor(private usersService: UsersService) {}

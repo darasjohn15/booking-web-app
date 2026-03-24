@@ -25,10 +25,19 @@ export class UsersService {
         return localStorage.getItem('userId')!
     }
 
-    getUser(userID: any): Observable<User> {
-        console.log("Users Service: Getting User Info - " + this.getUserId())
-        let url = this.baseUrl + "/" + userID
-        return this.http.get<User>(url, { headers: this.getRequestHeaders() });
+    getUser(userID?: any): Observable<User> {
+        if (userID) {
+            console.log("Users Service: Getting User Info - " + userID)
+            let url = this.baseUrl + "/" + userID
+            return this.http.get<User>(url, { headers: this.getRequestHeaders() });
+        }
+        else {
+            console.log("Users Service: Getting User Info - " + this.getUserId())
+            let url = this.baseUrl + "/" + this.getUserId()
+            return this.http.get<User>(url, { headers: this.getRequestHeaders() });
+        }
+
+        
     }
 
     deactivateUser(): Observable<ResponseMessage> {
@@ -49,18 +58,11 @@ export class UsersService {
 
     editUser(info: any): Observable<ResponseMessage> {
         console.log('Users Service: Editing User Info')
-
         return this.http.put<ResponseMessage>(this.baseUrl, info, { headers: this.getRequestHeaders() })
     }
 
     changePassword(input: any): Observable<ResponseMessage> {
         console.log('Users Service: Updating User Password')
-        
-        let request = {
-            id: this.getUserId(),
-            password: input
-        }
-
-        return this.http.put<ResponseMessage>(this.baseUrl, request, { headers: this.getRequestHeaders() })
+        return this.http.put<ResponseMessage>(this.baseUrl + '/change-password', input, { headers: this.getRequestHeaders() })
     }
 }

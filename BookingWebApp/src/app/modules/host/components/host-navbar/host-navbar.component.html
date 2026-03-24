@@ -10,7 +10,8 @@
   <ul class="navbar-links desktop">
     <a routerLink="/host/dashboard" routerLinkActive="underline">Dashboard</a>
     <a routerLink="/host/applications" routerLinkActive="underline">Applications</a>
-    <a routerLink="/host/create-event" routerLinkActive="underline">Create Event</a>
+    <a routerLink="/host/create-event" routerLinkActive="underline">New Event</a>
+    <a routerLink="/host/settings" routerLinkActive="underline">Settings</a>
     <button (click)="logout()" class="logout-button">Logout</button>
   </ul>
 
@@ -19,6 +20,7 @@
     <a routerLink="/host/dashboard" routerLinkActive="underline" (click)="toggleMobileMenu()">Dashboard</a>
     <a routerLink="/host/applications" routerLinkActive="underline" (click)="toggleMobileMenu()">Applications</a>
     <a routerLink="/host/create-event" routerLinkActive="underline" (click)="toggleMobileMenu()">Create Event</a>
+    <a routerLink="/host/settings" routerLinkActive="underline" (click)="toggleMobileMenu()">Settings</a>
     <button (click)="logout()" class="logout-button">Logout</button>
   </ul>
 </nav>
