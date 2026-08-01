@@ -1,36 +1,96 @@
 ## Book A Gig – Angular Frontend
 
-The Angular frontend for **Book A Gig**, a performer booking platform that connects artists with event hosts. This application provides a responsive, role-based user interface for managing events, applications, and bookings.
+---
 
-Built with a focus on clean UI/UX, component-driven architecture, and scalability.
+## Project Overview
+
+Book A Gig Web is the Angular frontend for Book A Gig, a full-stack performer booking platform that connects performers with event hosts to simplify event discovery, applications, and booking management.
+
+This application provides separate user experiences for performers and hosts through role-based routing, responsive dashboards, and secure integration with the Book A Gig Flask REST API.
+
+The project was built to strengthen my frontend engineering skills with Angular while demonstrating component-based architecture, client-side routing, REST API integration, and responsive user interface design.
+
+---
+
+## Architecture Diagrams / Screenshots
+
+---
+
+## Tech Stack
+
+| Category         | Technology            |
+| ---------------- | --------------------- |
+| Framework        | Angular               |
+| Language         | TypeScript            |
+| Styling          | CSS                   |
+| Routing          | Angular Router        |
+| HTTP             | HttpClient            |
+| Authentication   | JWT                   |
+| State Management | Local Component State |
+
+---
+
+## Why This Teck Stack
+
+| Technology     | Why I Chose It                                                        |
+| -------------- | --------------------------------------------------------------------- |
+| Angular        | Opinionated framework with a strong structure for large applications. |
+| TypeScript     | Static typing improves maintainability and reduces runtime errors.    |
+| Angular Router | Enables client-side navigation and role-based route protection.       |
+| HttpClient     | Simplifies communication with the backend REST API.                   |
+| CSS            | Lightweight styling with full control over the user interface.        |
+
+---
+
+## Engineering Decisions
+
+### Feature-Based Organization
+
+Application code is organized by business domain (authentication, host, performer) rather than by file type, making features easier to maintain and extend.
+
+### Role-Based Routing
+
+Separate routing logic ensures performers and hosts only access features relevant to their responsibilities.
+
+### Reusable Components
+
+Common UI elements are designed as reusable Angular components to reduce duplication and improve consistency.
+
+### Service Layer
+
+All API communication is centralized within Angular services, separating networking logic from presentation components.
+
+### Responsive Design
+
+Layouts were designed to provide a consistent experience across desktop and mobile devices.
 
 ---
 
 ## Features
 
-### Authentication & User Experience
-- Login and session handling
-- Role-based UI (Performer vs Host)
-- Conditional routing and protected views
+### Authentication
+- Login
+- Session management
+- Protected routes
 
 ### Performer Experience
 - Browse available events
-- Submit applications to perform
+- Submit performer applications
 - Track application status
 
-### Host Dashboard
+### Host Experience
 - Create and manage events
-- View incoming applications
-- Approve or reject performers
+- Review performer applications
+- Approve or reject applicants
 
-### UI/UX Design
-- Responsive layout for desktop and mobile
-- Clean, modern dashboard interface
-- Component-based design for reusability
+### User Experience
+- Responsive layouts
+- Component-based interface
+- REST API integration
 
 ---
 
-## Project Structure (Angular)
+## Project Structure
 
 ```text
 src/
@@ -56,35 +116,16 @@ src/
 └── environments/          → Environment configuration (dev, prod)
 ```
 
-## Tech Stack
-
-- **Framework**: Angular  
-- **Language**: TypeScript  
-- **Styling**: CSS  
-- **State Management**: Local component state (expandable)  
-- **API Communication**: HTTPClient (REST)
-
 ---
 
 ## Getting Started
 
-### Prerequisites
-- Node.js (v16+ recommended)
-- Angular CLI
+For local development instructions, go to the [Local Dev Setup](docs/local_dev_setup.md) guide.
 
-### Installation
+---
 
-```bash
-# Clone the repo
-git clone https://github.com/darasjohn15/booking-web-app.git
+## Roadmap
 
-# Navigate to project
-cd booking-web-app
+No upcoming features are planned right now.
 
-# Install dependencies
-npm install
-
-# Run the App
-ng serve
-```
-Visit ```http://localhost:4200```
+---
